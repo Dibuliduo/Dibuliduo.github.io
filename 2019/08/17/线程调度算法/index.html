@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="[TOC] 线程调度算法1.时间片轮转算法​            时间片轮转调度算法是一种最简单和最公平以及使用范围最广的算法. ​    基本原理: ​             根据先来先服务原则,将需要执行的所有进程按照到达时间的大小排成一个升序的序列,每次都给一个进程同样大小的时间片,在这个时间片内如果进程执行结束了,那么把进程从进程队列中删去,如果进程还没有结束,那么把该进程停止然后改为">
+  <meta name="description" content="线程调度算法1.时间片轮转算法​            时间片轮转调度算法是一种最简单和最公平以及使用范围最广的算法. ​    基本原理: ​             根据先来先服务原则,将需要执行的所有进程按照到达时间的大小排成一个升序的序列,每次都给一个进程同样大小的时间片,在这个时间片内如果进程执行结束了,那么把进程从进程队列中删去,如果进程还没有结束,那么把该进程停止然后改为等待状态,放">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
 <meta property="og:url" content="http://yoursite.com/2019/08/17/线程调度算法/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="[TOC] 线程调度算法1.时间片轮转算法​            时间片轮转调度算法是一种最简单和最公平以及使用范围最广的算法. ​    基本原理: ​             根据先来先服务原则,将需要执行的所有进程按照到达时间的大小排成一个升序的序列,每次都给一个进程同样大小的时间片,在这个时间片内如果进程执行结束了,那么把进程从进程队列中删去,如果进程还没有结束,那么把该进程停止然后改为">
+<meta property="og:description" content="线程调度算法1.时间片轮转算法​            时间片轮转调度算法是一种最简单和最公平以及使用范围最广的算法. ​    基本原理: ​             根据先来先服务原则,将需要执行的所有进程按照到达时间的大小排成一个升序的序列,每次都给一个进程同样大小的时间片,在这个时间片内如果进程执行结束了,那么把进程从进程队列中删去,如果进程还没有结束,那么把该进程停止然后改为等待状态,放">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-16T18:12:17.755Z">
+<meta property="og:updated_time" content="2019-08-16T19:33:36.707Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="[TOC] 线程调度算法1.时间片轮转算法​            时间片轮转调度算法是一种最简单和最公平以及使用范围最广的算法. ​    基本原理: ​             根据先来先服务原则,将需要执行的所有进程按照到达时间的大小排成一个升序的序列,每次都给一个进程同样大小的时间片,在这个时间片内如果进程执行结束了,那么把进程从进程队列中删去,如果进程还没有结束,那么把该进程停止然后改为">
+<meta name="twitter:description" content="线程调度算法1.时间片轮转算法​            时间片轮转调度算法是一种最简单和最公平以及使用范围最广的算法. ​    基本原理: ​             根据先来先服务原则,将需要执行的所有进程按照到达时间的大小排成一个升序的序列,每次都给一个进程同样大小的时间片,在这个时间片内如果进程执行结束了,那么把进程从进程队列中删去,如果进程还没有结束,那么把该进程停止然后改为等待状态,放">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -159,8 +159,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>[TOC]</p>
-<h1 id="线程调度算法"><a href="#线程调度算法" class="headerlink" title="线程调度算法"></a>线程调度算法</h1><h2 id="1-时间片轮转算法"><a href="#1-时间片轮转算法" class="headerlink" title="1.时间片轮转算法"></a>1.时间片轮转算法</h2><p>​            时间片轮转调度算法是一种最简单和最公平以及使用范围最广的算法.</p>
+        <h1 id="线程调度算法"><a href="#线程调度算法" class="headerlink" title="线程调度算法"></a>线程调度算法</h1><h2 id="1-时间片轮转算法"><a href="#1-时间片轮转算法" class="headerlink" title="1.时间片轮转算法"></a>1.时间片轮转算法</h2><p>​            时间片轮转调度算法是一种最简单和最公平以及使用范围最广的算法.</p>
 <p>​    <strong>基本原理:</strong></p>
 <p>​             根据先来先服务原则,将需要执行的所有进程按照到达时间的大小排成一个升序的序列,每次都给一个进程同样大小的时间片,在这个时间片内如果进程执行结束了,那么把进程从进程队列中删去,如果进程还没有结束,那么把该进程停止然后改为等待状态,放到进程队列的尾部,直到所有的进程都已执行完毕;</p>
 <p>​    <strong>进程的切换:</strong> </p>
