@@ -15,9 +15,7 @@
 <meta property="og:site_name" content="XIXIXI">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://images2015.cnblogs.com/blog/874710/201611/874710-20161116212819810-31016841.png">
-<meta property="og:image" content="https://images2015.cnblogs.com/blog/874710/201611/874710-20161116213248701-1976448309.png">
-<meta property="og:image" content="https://images2015.cnblogs.com/blog/874710/201611/874710-20161116213322170-1989555882.png">
-<meta property="og:updated_time" content="2019-08-17T03:30:44.669Z">
+<meta property="og:updated_time" content="2019-08-17T03:54:53.619Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hashcode笔记">
 <meta name="twitter:image" content="https://images2015.cnblogs.com/blog/874710/201611/874710-20161116212819810-31016841.png">
@@ -196,16 +194,19 @@
 </li>
 <li><p>举个例子，其实就明白了这个道理，</p>
 <p>比如：有个A类重写了equals方法，但是没有重写hashCode方法，看输出结果，对象a1和对象a2使用equals方法相等，按照上面的hashcode的用法，那么他们两个的hashcode肯定相等，但是这里由于没重写hashcode方法，他们两个hashcode并不一样，所以，我们在重写了equals方法后，尽量也重写了hashcode方法，通过一定的算法，使他们在equals相等时，也会有相同的hashcode值。</p>
+<p>　　　　　　　　　　　　　　<img src="https://images2015.cnblogs.com/blog/874710/201611/874710-20161116212819810-31016841.png" alt="img"></p>
+</li>
+<li><p>实例：现在来看一下String的源码中的equals方法和hashcode方法。这个类就重写了这两个方法，现在为什么需要重写这两个方法了吧？</p>
+</li>
+<li><p>equals方法：其实跟我上面写的那个例子是一样的原理，所以通过源码又知道了String的equals方法验证的是两个字符串的值是否一样。还有Double类也重写了这些方法。很多类有比较这类的，都重写了这两个方法，因为在所有类的父类Object中。equals的功能就是 “==”号的功能。还可以比较String对象的equals和==的区别啦。</p>
 </li>
 </ul>
-<p>　　　　　　　　　　　　　　<img src="https://images2015.cnblogs.com/blog/874710/201611/874710-20161116212819810-31016841.png" alt="img"></p>
-<ul>
-<li>实例：现在来看一下String的源码中的equals方法和hashcode方法。这个类就重写了这两个方法，现在为什么需要重写这两个方法了吧？</li>
-<li>equals方法：其实跟我上面写的那个例子是一样的原理，所以通过源码又知道了String的equals方法验证的是两个字符串的值是否一样。还有Double类也重写了这些方法。很多类有比较这类的，都重写了这两个方法，因为在所有类的父类Object中。equals的功能就是 “==”号的功能。你们还可以比较String对象的equals和==的区别啦。这里不再说明。</li>
-</ul>
 <p><strong>equals方法：</strong></p>
-<p><img src="https://images2015.cnblogs.com/blog/874710/201611/874710-20161116213248701-1976448309.png" alt="img"></p>
-<p><strong>hashcode方法</strong>：<img src="https://images2015.cnblogs.com/blog/874710/201611/874710-20161116213322170-1989555882.png" alt="img"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object object)</span> </span>&#123;</span><br><span class="line">	String[] value = <span class="keyword">null</span>;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">this</span> == object) &#123;        </span><br><span class="line">  	<span class="keyword">return</span> <span class="keyword">true</span>;    </span><br><span class="line">  &#125;    </span><br><span class="line">  <span class="keyword">if</span> (object <span class="keyword">instanceof</span> String) &#123;</span><br><span class="line">  	String anotherString = (String) object;</span><br><span class="line">  	<span class="keyword">int</span> n = value.length;</span><br><span class="line">  	<span class="keyword">if</span> (n == anotherString.value.length) &#123;</span><br><span class="line">  		<span class="keyword">char</span> v1[] = value;</span><br><span class="line">  		<span class="keyword">char</span> v2[] = anotherString.value;</span><br><span class="line">  		<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    	<span class="keyword">while</span> (n-- != <span class="number">0</span>) &#123;</span><br><span class="line">    		<span class="keyword">if</span> (v1[i] != v2[i]) &#123;</span><br><span class="line">      		<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">      	&#125;</span><br><span class="line">      	i++;            </span><br><span class="line">    	&#125;            </span><br><span class="line">    	<span class="keyword">return</span> <span class="keyword">true</span>;        </span><br><span class="line">  	&#125;                </span><br><span class="line">	&#125;    </span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>hashcode方法:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashcode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> h = hash;</span><br><span class="line">	<span class="keyword">if</span> (h == <span class="number">0</span> &amp;&amp; value.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">char</span> val[] = value;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; value.length; i++) &#123;</span><br><span class="line">			h = <span class="number">31</span> * h + val[i];</span><br><span class="line">		&#125;</span><br><span class="line">		hash = h;</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">return</span> h;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -451,11 +452,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
               </li>
              
               <li class="article-tag-list-item">
