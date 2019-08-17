@@ -138,54 +138,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-线程调度算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>dsad</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/17/线程调度算法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-线程切换的步骤" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -209,8 +161,8 @@
         <a id="more"></a>
 
 <center><strong>线程切换的步骤以及代价</strong></center>
+**1.线程的上下文切换:**
 
-<p><strong>1.线程的上下文切换:</strong></p>
 <p>CPU保存上一次的任务状态,加载下一个任务这个过程为一次上下文切换;</p>
 <p>​    <strong>执行的原因:</strong> </p>
 <ul>
@@ -259,6 +211,135 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/08/17/线程切换的步骤/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-线程调度算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/17/线程调度算法/">线程调度算法</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/17/线程调度算法/" class="archive-article-date">
+  	<time datetime="2019-08-16T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+
+<h1 id="线程调度算法"><a href="#线程调度算法" class="headerlink" title="线程调度算法"></a>线程调度算法</h1><h2 id="1-时间片轮转算法"><a href="#1-时间片轮转算法" class="headerlink" title="1.时间片轮转算法"></a>1.时间片轮转算法</h2><p>时间片轮转调度算法是一种最简单和最公平以及使用范围最广的算法.</p>
+<ul>
+<li>基本原理:</li>
+</ul>
+<p>根据先来先服务原则,将需要执行的所有进程按照到达时间的大小排成一个升序的序列,每次都给一个进程同样大小的时间片,在这个时间片内如果进程执行结束了,那么把进程从进程队列中删去,如果进程还没有结束,那么把该进程停止然后改为等待状态,放到进程队列的尾部,直到所有的进程都已执行完毕;</p>
+<ul>
+<li>进程的切换:</li>
+</ul>
+<p>(1) 时间片够用:意思就是在该时间片内,进程可以运行至结束,进程运行结束之后,将进程从进程队列中删除,然后启动新的时间片;</p>
+<p>(2) 事件片不够用: 意思就是在该时间片内,进程只能完成它的一部分的任务,在时间片用完之后,将进程的状态改写成等待状态,将进程放到进程队列的尾部,等待CPU的调用.</p>
+<ul>
+<li>时间片大小的选择:</li>
+</ul>
+<p>时间片过小,则进程频繁切换,会造成CPU资源的浪费.</p>
+<p>时间片过大,则轮转调度算法就退化成了先来先服务算法.                </p>
+<h2 id="2-先来先服务算法"><a href="#2-先来先服务算法" class="headerlink" title="2.先来先服务算法"></a>2.先来先服务算法</h2><p>​    来先服务算(First Come First Servered)类似于数据结构中队列的先进先出(First In First Out).先来先服务算法的特点是容易实现,但是效率不高,只顾及作业等候时间,没考虑作业要求服务时间的长短.因此对长作业有利,不利于短作业.</p>
+<p>​    先来先服务算法的平均作业周转时间与作业提交的顺序有关.如下图所示:</p>
+<p>​    假设有三个作业,作业名分别为作业1,作业2,作业3.</p>
+<table>
+<thead>
+<tr>
+<th align="center">作业名</th>
+<th align="center">所需CPU时间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">作业1</td>
+<td align="center">28</td>
+</tr>
+<tr>
+<td align="center">作业2</td>
+<td align="center">9</td>
+</tr>
+<tr>
+<td align="center">作业3</td>
+<td align="center">3</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>作业顺序:1,2,3   ====&gt;   ( 28 + 28 + 9 + 28 + 9 + 3 ) / 3 = 35; </p>
+</li>
+<li><p>作业顺序:2,1,3   ====&gt;   ( 9 + 28 + 9 + 28 + 9 + 3 ) / 3 = 29;</p>
+</li>
+<li><p>作业顺序:3,2,1   ====&gt;   ( 3 + 3 + 9 + 3 + 9 + 28 ) / 3 = 18;  </p>
+</li>
+</ul>
+<h2 id="3-优先线调度算法"><a href="#3-优先线调度算法" class="headerlink" title="3.优先线调度算法"></a>3.优先线调度算法</h2><h2 id="3-多级反馈调度算法"><a href="#3-多级反馈调度算法" class="headerlink" title="3.多级反馈调度算法"></a>3.多级反馈调度算法</h2><ul>
+<li>假设有多级队列,队列的优先级时从高到低的,处于优先级高的优先执行,每次有新的进程进入就将进程放到第一级队列(优先级最高)的队尾.</li>
+<li>对与同一级队列都遵从先来先服务算法,每一级队列都有相应的时间片,其时间片的长短与优先级是相反的(时间片越长的优先级越低).当该进程得到的时间片用完,该进程还没有完成则将其放到下一级队列的队尾.如果该进程处于最后一个队列,进程还未完成,时间片使用完,则放到最后一级队列的队尾.</li>
+<li>处于高优先级的进程可以抢占正在执行的处于低优先级队列的进程,即每个时刻都是从处于高优先级队列的进程开始执行.</li>
+</ul>
+<h2 id="5-高响应比优先调度算法"><a href="#5-高响应比优先调度算法" class="headerlink" title="5.高响应比优先调度算法"></a>5.高响应比优先调度算法</h2><p>​    这个算法(HRRN: <strong>H</strong>ign <strong>R</strong>esponse <strong>R</strong>atio <strong>N</strong>ext)是介于先来先服务算法和短作业优先算法之间的这种算法,既考虑了作业等待时间又考虑作业运行时间,既考虑短作业又不使长作业等待时间过长.</p>
+<p>​    <strong>优点:</strong>短作业与先后次序的兼顾,且不会使长作业得不到服务;</p>
+<p>​    <strong>缺点:</strong>响应比计算系统开销,增加系统开销;    </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">线程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/17/线程调度算法/">展开全文 >></a>
         </p>
       
 
