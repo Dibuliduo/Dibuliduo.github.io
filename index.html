@@ -138,15 +138,12 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-线程切换的步骤" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-线程调度算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<p>title: 线程切换的步骤以及代价</p>
-<p>date: 2019/8/17</p>
-<p>tags: 线程</p>
+        <p>dsad</p>
         
       
 
@@ -159,7 +156,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/17/线程切换的步骤/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/08/17/线程调度算法/">展开全文 >></a>
         </p>
       
 
@@ -189,13 +186,56 @@
 
 
   
-    <article id="post-线程调度算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-线程切换的步骤" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/17/线程切换的步骤/">线程切换的步骤以及代价</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/17/线程切换的步骤/" class="archive-article-date">
+  	<time datetime="2019-08-16T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-17</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>dsad</p>
-        
+        <a id="more"></a>
+
+<center><strong>线程切换的步骤以及代价</strong></center>
+
+<p><strong>1.线程的上下文切换:</strong></p>
+<p>CPU保存上一次的任务状态,加载下一个任务这个过程为一次上下文切换;</p>
+<p>​    <strong>执行的原因:</strong> </p>
+<ul>
+<li><p>正常时间片完了之后的正常调度.</p>
+</li>
+<li><p>执行任务时遇到IO堵塞,挂起当前线程加载下一个线程.</p>
+</li>
+<li><p>多个任务抢占锁资源,当前任务没有抢到锁资源,被调度器挂起,继续下一个任务.</p>
+</li>
+<li><p>用户代码挂起当前任务,让出CPU的时间.</p>
+</li>
+</ul>
+<p><strong>2.如何减少上下文的切换</strong></p>
+<ul>
+<li>无锁编程;</li>
+<li>CAS: 原子类就是啦</li>
+<li>协程: 单线程里面实现调度多任务.</li>
+</ul>
+<p><strong>3.多线程切换的代价:</strong></p>
+<ul>
+<li>设计更加复杂.尤其是多线程访问共享数据时,需要特别注意.</li>
+<li>上下文切换的开销.执行起来并不廉价,需要存储当前线程的本地的数据,程序指针等,然后载入另一个线程的本地数据,程序指针等,最后才开始执行.</li>
+<li>增加资源的消耗.除了CPU,还需要一些内存来维持本地的堆栈.</li>
+</ul>
+
       
 
       
@@ -203,11 +243,22 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">线程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/17/线程调度算法/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/08/17/线程切换的步骤/">展开全文 >></a>
         </p>
       
 
@@ -324,6 +375,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>

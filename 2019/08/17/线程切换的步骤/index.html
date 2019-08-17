@@ -6,19 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>XIXIXI</title>
+  <title>线程切换的步骤以及代价 | XIXIXI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="title: 线程切换的步骤以及代价 date: 2019/8/17 tags: 线程">
+  <meta name="description" content="线程切换的步骤以及代价  1.线程的上下文切换: CPU保存上一次的任务状态,加载下一个任务这个过程为一次上下文切换; ​    执行的原因:   正常时间片完了之后的正常调度.  执行任务时遇到IO堵塞,挂起当前线程加载下一个线程.  多个任务抢占锁资源,当前任务没有抢到锁资源,被调度器挂起,继续下一个任务.  用户代码挂起当前任务,让出CPU的时间.   2.如何减少上下文的切换  无锁编">
+<meta name="keywords" content="线程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="XIXIXI">
+<meta property="og:title" content="线程切换的步骤以及代价">
 <meta property="og:url" content="http://yoursite.com/2019/08/17/线程切换的步骤/index.html">
 <meta property="og:site_name" content="XIXIXI">
-<meta property="og:description" content="title: 线程切换的步骤以及代价 date: 2019/8/17 tags: 线程">
+<meta property="og:description" content="线程切换的步骤以及代价  1.线程的上下文切换: CPU保存上一次的任务状态,加载下一个任务这个过程为一次上下文切换; ​    执行的原因:   正常时间片完了之后的正常调度.  执行任务时遇到IO堵塞,挂起当前线程加载下一个线程.  多个任务抢占锁资源,当前任务没有抢到锁资源,被调度器挂起,继续下一个任务.  用户代码挂起当前任务,让出CPU的时间.   2.如何减少上下文的切换  无锁编">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-17T02:44:27.479Z">
+<meta property="og:updated_time" content="2019-08-17T02:48:16.372Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="XIXIXI">
-<meta name="twitter:description" content="title: 线程切换的步骤以及代价 date: 2019/8/17 tags: 线程">
+<meta name="twitter:title" content="线程切换的步骤以及代价">
+<meta name="twitter:description" content="线程切换的步骤以及代价  1.线程的上下文切换: CPU保存上一次的任务状态,加载下一个任务这个过程为一次上下文切换; ​    执行的原因:   正常时间片完了之后的正常调度.  执行任务时遇到IO堵塞,挂起当前线程加载下一个线程.  多个任务抢占锁资源,当前任务没有抢到锁资源,被调度器挂起,继续下一个任务.  用户代码挂起当前任务,让出CPU的时间.   2.如何减少上下文的切换  无锁编">
   
     <link rel="alternative" href="/atom.xml" title="XIXIXI" type="application/atom+xml">
   
@@ -143,15 +144,26 @@
             <article id="post-线程切换的步骤" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      线程切换的步骤以及代价
+    </h1>
+  
+
+        
+        <a href="/2019/08/17/线程切换的步骤/" class="archive-article-date">
+  	<time datetime="2019-08-16T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-17</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<p>title: 线程切换的步骤以及代价</p>
-<p>date: 2019/8/17</p>
-<p>tags: 线程</p>
-<a id="more"></a>
+        <a id="more"></a>
 
-<center>线程切换的步骤以及代价<center>
+<center><strong>线程切换的步骤以及代价</strong></center>
 
 <p><strong>1.线程的上下文切换:</strong></p>
 <p>CPU保存上一次的任务状态,加载下一个任务这个过程为一次上下文切换;</p>
@@ -178,7 +190,7 @@
 <li>上下文切换的开销.执行起来并不廉价,需要存储当前线程的本地的数据,程序指针等,然后载入另一个线程的本地数据,程序指针等,最后才开始执行.</li>
 <li>增加资源的消耗.除了CPU,还需要一些内存来维持本地的堆栈.</li>
 </ul>
-</center></center>
+
       
 
       
@@ -207,6 +219,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">线程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -271,11 +294,15 @@
   
 <nav id="article-nav">
   
-  
-    <a href="/2019/08/17/线程调度算法/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"></div>
-      <i class="icon-circle-right"></i>
+    <a href="/2019/08/17/线程调度算法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
     </a>
+  
   
 </nav>
 
@@ -393,6 +420,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">线程</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
