@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>线程切换的步骤以及代价 | XIXIXI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="线程切换的步骤以及代价">
+  <meta name="description" content="线程切换的步骤以及代价  1.线程的上下文切换: CPU保存上一次的任务状态,加载下一个任务这个过程为一次上下文切换; ​    执行的原因:   正常时间片完了之后的正常调度.  执行任务时遇到IO堵塞,挂起当前线程加载下一个线程.  多个任务抢占锁资源,当前任务没有抢到锁资源,被调度器挂起,继续下一个任务.  用户代码挂起当前任务,让出CPU的时间.   2.如何减少上下文的切换  无锁编">
 <meta name="keywords" content="线程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="线程切换的步骤以及代价">
 <meta property="og:url" content="http://yoursite.com/2019/08/17/线程切换的步骤/index.html">
 <meta property="og:site_name" content="XIXIXI">
-<meta property="og:description" content="线程切换的步骤以及代价">
+<meta property="og:description" content="线程切换的步骤以及代价  1.线程的上下文切换: CPU保存上一次的任务状态,加载下一个任务这个过程为一次上下文切换; ​    执行的原因:   正常时间片完了之后的正常调度.  执行任务时遇到IO堵塞,挂起当前线程加载下一个线程.  多个任务抢占锁资源,当前任务没有抢到锁资源,被调度器挂起,继续下一个任务.  用户代码挂起当前任务,让出CPU的时间.   2.如何减少上下文的切换  无锁编">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-17T02:52:23.575Z">
+<meta property="og:updated_time" content="2019-08-17T02:55:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线程切换的步骤以及代价">
-<meta name="twitter:description" content="线程切换的步骤以及代价">
+<meta name="twitter:description" content="线程切换的步骤以及代价  1.线程的上下文切换: CPU保存上一次的任务状态,加载下一个任务这个过程为一次上下文切换; ​    执行的原因:   正常时间片完了之后的正常调度.  执行任务时遇到IO堵塞,挂起当前线程加载下一个线程.  多个任务抢占锁资源,当前任务没有抢到锁资源,被调度器挂起,继续下一个任务.  用户代码挂起当前任务,让出CPU的时间.   2.如何减少上下文的切换  无锁编">
   
     <link rel="alternative" href="/atom.xml" title="XIXIXI" type="application/atom+xml">
   
@@ -161,8 +161,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <center><strong>线程切换的步骤以及代价</strong></center>
-<a id="more"></a>
+        <a id="more"></a>
+
+<center><strong>线程切换的步骤以及代价</strong></center>
 
 <p><strong>1.线程的上下文切换:</strong></p>
 <p>CPU保存上一次的任务状态,加载下一个任务这个过程为一次上下文切换;</p>
