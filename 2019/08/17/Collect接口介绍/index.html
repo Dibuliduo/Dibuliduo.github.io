@@ -8,13 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>XIXIXI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="Collect接口介绍: Collection接口是最基本的集合接口.Collection派生了两个子接口Set和List,分别定义了两种不同的存储方式. 1.Set接口 ​    Set接口继承于Collection接口,他没有提供额外的方法,但实现了Set接口的集合类中的元素">
+<meta property="og:type" content="article">
 <meta property="og:title" content="XIXIXI">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/08/17/Collect接口介绍/index.html">
 <meta property="og:site_name" content="XIXIXI">
+<meta property="og:description" content="Collect接口介绍: Collection接口是最基本的集合接口.Collection派生了两个子接口Set和List,分别定义了两种不同的存储方式. 1.Set接口 ​    Set接口继承于Collection接口,他没有提供额外的方法,但实现了Set接口的集合类中的元素">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-03T16:37:22.197Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XIXIXI">
+<meta name="twitter:description" content="Collect接口介绍: Collection接口是最基本的集合接口.Collection派生了两个子接口Set和List,分别定义了两种不同的存储方式. 1.Set接口 ​    Set接口继承于Collection接口,他没有提供额外的方法,但实现了Set接口的集合类中的元素">
   
     <link rel="alternative" href="/atom.xml" title="XIXIXI" type="application/atom+xml">
   
@@ -136,85 +140,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-hashcode笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>一、hashcode是什么？</strong></p>
-<p>　　　1、hash和hash表是什么？　　　</p>
-<p>　　　　　　想要知道这个hashcode，首先得知道hash，通过百度百科看一下</p>
-<p>　　　　　　　　　　　　　　<img src="https://images2015.cnblogs.com/blog/874710/201611/874710-20161116202528013-1417169655.png" alt="img"></p>
-<p>　　　　　　　　　　　　　　　　<img src="https://images2015.cnblogs.com/blog/874710/201611/874710-20161116202950092-1019467368.png" alt="img"></p>
-<p>　　　　　　hash是一个函数，该函数中的实现就是一种算法，就是通过一系列的算法来得到一个hash值，这个时候，我们就需要知道另一个东西，hash表，通过hash算法得到的hash值就在这张hash表中，也就是说，hash表就是所有的hash值组成的，有很多种hash函数，也就代表着有很多种算法得到hash值，如上面截图的三种，等会我们就拿第一种来说。</p>
-<p>　　　2、hashcode　</p>
-<p>　　　　　　有了前面的基础，这里讲解就简单了，hashcode就是通过hash函数得来的，通俗的说，就是通过某一种算法得到的，hashcode就是在hash表中有对应的位置。</p>
-<p>　　　　　　每个对象都有hashcode，对象的hashcode怎么得来的呢？</p>
-<p>　　　　　　　　　　首先一个对象肯定有物理地址，在别的博文中会hashcode说成是代表对象的地址，这里肯定会让读者形成误区，对象的物理地址跟这个hashcode地址不一样，hashcode代表对象的地址说的是对象在hash表中的位置，物理地址说的对象存放在内存中的地址，那么对象如何得到hashcode呢？通过对象的内部地址(也就是物理地址)转换成一个整数，然后该整数通过hash函数的算法就得到了hashcode，所以，hashcode是什么呢？就是在hash表中对应的位置。这里如果还不是很清楚的话，举个例子，hash表中有 hashcode为1、hashcode为2、(…)3、4、5、6、7、8这样八个位置，有一个对象A，A的物理地址转换为一个整数17(这是假如)，就通过直接取余算法，17%8=1，那么A的hashcode就为1，且A就在hash表中1的位置。肯定会有其他疑问，接着看下面，这里只是举个例子来让你们知道什么是hashcode的意义。</p>
-<p><strong>二、hashcode有什么作用呢？</strong></p>
-<p>　　　　前面说了这么多关于hash函数，和hashcode是怎么得来的，还有hashcode对应的是hash表中的位置，可能大家就有疑问，为什么hashcode不直接写物理地址呢，还要另外用一张hash表来代表对象的地址？接下来就告诉你hashcode的作用，</p>
-<p>　　　　1、HashCode的存在主要是为了查找的快捷性，HashCode是用来在散列存储结构中确定对象的存储地址的(后半句说的用hashcode来代表对象就是在hash表中的位置)</p>
-<p>　　　　 　　  为什么hashcode就查找的更快，比如：我们有一个能存放1000个数这样大的内存中，在其中要存放1000个不一样的数字，用最笨的方法，就是存一个数字，就遍历一遍，看有没有相同得数，当存了900个数字，开始存901个数字的时候，就需要跟900个数字进行对比，这样就很麻烦，很是消耗时间，用hashcode来记录对象的位置，来看一下。hash表中有1、2、3、4、5、6、7、8个位置，存第一个数，hashcode为1，该数就放在hash表中1的位置，存到100个数字，hash表中8个位置会有很多数字了，1中可能有20个数字，存101个数字时，他先查hashcode值对应的位置，假设为1，那么就有20个数字和他的hashcode相同，他只需要跟这20个数字相比较(equals)，如果每一个相同，那么就放在1这个位置，这样比较的次数就少了很多，实际上hash表中有很多位置，这里只是举例只有8个，所以比较的次数会让你觉得也挺多的，实际上，如果hash表很大，那么比较的次数就很少很少了。  通过对原始方法和使用hashcode方法进行对比，我们就知道了hashcode的作用，并且为什么要使用hashcode了</p>
-<p><strong>三、equals方法和hashcode的关系？</strong></p>
-<p>　　　　　通过前面这个例子，大概可以知道，先通过hashcode来比较，如果hashcode相等，那么就用equals方法来比较两个对象是否相等，用个例子说明：上面说的hash表中的8个位置，就好比8个桶，每个桶里能装很多的对象，对象A通过hash函数算法得到将它放到1号桶中，当然肯定有别的对象也会放到1号桶中，如果对象B也通过算法分到了1号桶，那么它如何识别桶中其他对象是否和它一样呢，这时候就需要equals方法来进行筛选了。</p>
-<p>　　　　　　　1、如果两个对象equals相等，那么这两个对象的HashCode一定也相同</p>
-<p>　　　　　　  2、如果两个对象的HashCode相同，不代表两个对象就相同，只能说明这两个对象在散列存储结构中，存放于同一个位置</p>
-<p>　　这两条你们就能够理解了。</p>
-<p><strong>四、为什么equals方法重写的话，建议也一起重写hashcode方法？</strong></p>
-<p>　　　　　　（如果对象的equals方法被重写，那么对象的HashCode方法也尽量重写）</p>
-<p>　　　　　　举个例子，其实就明白了这个道理，</p>
-<p>　　　　　　　　比如：有个A类重写了equals方法，但是没有重写hashCode方法，看输出结果，对象a1和对象a2使用equals方法相等，按照上面的hashcode的用法，那么他们两个的hashcode肯定相等，但是这里由于没重写hashcode方法，他们两个hashcode并不一样，所以，我们在重写了equals方法后，尽量也重写了hashcode方法，通过一定的算法，使他们在equals相等时，也会有相同的hashcode值。</p>
-<p>　　　　　　　　　　　　　　<img src="https://images2015.cnblogs.com/blog/874710/201611/874710-20161116212819810-31016841.png" alt="img"></p>
-<p>　　　　实例：现在来看一下String的源码中的equals方法和hashcode方法。这个类就重写了这两个方法，现在为什么需要重写这两个方法了吧？</p>
-<p>　　　　　　　　equals方法：其实跟我上面写的那个例子是一样的原理，所以通过源码又知道了String的equals方法验证的是两个字符串的值是否一样。还有Double类也重写了这些方法。很多类有比较这类的，都重写了这两个方法，因为在所有类的父类Object中。equals的功能就是 “==”号的功能。你们还可以比较String对象的equals和==的区别啦。这里不再说明。</p>
-<p>　　　　　　　　<img src="https://images2015.cnblogs.com/blog/874710/201611/874710-20161116213248701-1976448309.png" alt="img"></p>
-<p>hashcode方法</p>
-<p>　　　　　　　　<img src="https://images2015.cnblogs.com/blog/874710/201611/874710-20161116213322170-1989555882.png" alt="img"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/17/hashcode笔记/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Collect接口介绍" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Collect接口介绍" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
@@ -227,6 +153,27 @@
       
 
       
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
     </div>
     <div class="article-info article-info-index">
       
@@ -234,16 +181,84 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/17/Collect接口介绍/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/17/Collect接口介绍/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2019/08/17/hashcode笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/17/语法知识巩固/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -263,544 +278,14 @@
 
 
 
-
-  
-    <article id="post-语法知识巩固" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="语法知识巩固"><a href="#语法知识巩固" class="headerlink" title="语法知识巩固"></a>语法知识巩固</h1><h2 id="1-数组的定义："><a href="#1-数组的定义：" class="headerlink" title="1.数组的定义："></a>1.数组的定义：</h2><p><strong>（1）int[] a = new int[100];</strong></p>
-<p><strong>（2）a = new int[] {1, 2, 3, 4, 5};</strong></p>
-<p><strong>（3）int[] a = {1, 2, 3, 4, 5};</strong></p>
-<h2 id="2-链表的定义"><a href="#2-链表的定义" class="headerlink" title="2.链表的定义"></a>2.链表的定义</h2><p><strong>（1） LinkedList linkedList = new LinkedList();</strong></p>
-<p><strong>（2）LinkedList(Collection&lt;? extends E&gt; elements)：构造一个链表，将集合中的所有元素添加到这个链表中</strong></p>
-<p><strong>（3）addFirst(E e)：将某个元素添加到列表的头部</strong></p>
-<p>​          <strong>addLast(E e)：将某个元素添加到列表的尾部</strong></p>
-<p>​           <strong>E getFirst(E e)：返回头部元素</strong></p>
-<p>​           <strong>E getLast(E e)：返回尾部元素</strong></p>
-<p>​           <strong>E removeFirst()：删除头部元素并返回</strong></p>
-<p>​           <strong>E removeLast()：删除尾部元素并返回</strong></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/17/语法知识巩固/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-协程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="协程"><a href="#协程" class="headerlink" title="协程"></a><strong>协程</strong></h1><p>协程部分只需要了解协程更加轻量化,是在用户态下进行调度,线程的切换比上下文切换的代价低很多;</p>
-<p>还可以了解一下Java协程的第三方框架:Kilim 和 Quasar;</p>
-<h2 id="1-Kilim"><a href="#1-Kilim" class="headerlink" title="(1) Kilim"></a>(1) Kilim</h2><p>Kilim协程框架主要核心解决的问题:</p>
-<p>​    1.如何暂停处理当前任务,转而处理其他任务;</p>
-<p>​    2.如何恢复任务继续执行;</p>
-<p>Kilim主要干了以下的事情:</p>
-<p>​    1.利用字节码技术(基于ASM字节码框架),将普通代码转化为支持协程的代码;</p>
-<p>​    2.调用Pauseable方法的时候,如果暂停了就保存当前方法栈的State,暂停执行当前Task,将控制权交给Scheduler调度器;</p>
-<p>​    3.Scheduler调度器负责协调其他就绪的Task;</p>
-<p>​    4.之前暂停的Task恢复的时候,自动恢复State,恢复到上次执行的位置继续执行;</p>
-<h2 id="2-Quasar"><a href="#2-Quasar" class="headerlink" title="(2)Quasar"></a>(2)Quasar</h2>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/17/协程/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><h2 id="1-常用算法"><a href="#1-常用算法" class="headerlink" title="1.常用算法"></a>1.常用算法</h2><h4 id="（1）分治"><a href="#（1）分治" class="headerlink" title="（1）分治"></a>（1）分治</h4><h4 id="（2）动态规划"><a href="#（2）动态规划" class="headerlink" title="（2）动态规划"></a>（2）动态规划</h4><h4 id="（3）贪心"><a href="#（3）贪心" class="headerlink" title="（3）贪心"></a>（3）贪心</h4><h4 id="（4）回溯"><a href="#（4）回溯" class="headerlink" title="（4）回溯"></a>（4）回溯</h4><h4 id="（5）分支界定"><a href="#（5）分支界定" class="headerlink" title="（5）分支界定"></a>（5）分支界定</h4><h2 id="2-复杂度"><a href="#2-复杂度" class="headerlink" title="2.复杂度"></a>2.复杂度</h2><h4 id="（1）时间复杂度"><a href="#（1）时间复杂度" class="headerlink" title="（1）时间复杂度"></a>（1）时间复杂度</h4><h4 id="（2）空间复杂度"><a href="#（2）空间复杂度" class="headerlink" title="（2）空间复杂度"></a>（2）空间复杂度</h4><h2 id="3-字符串匹配"><a href="#3-字符串匹配" class="headerlink" title="3.字符串匹配"></a>3.字符串匹配</h2><h4 id="（1）BF算法"><a href="#（1）BF算法" class="headerlink" title="（1）BF算法"></a>（1）BF算法</h4><p>​    属于暴力破解字符串匹配问题，将所有的情况遍历一遍，时间复杂度比较大。说白了，就是一个个对比然后找出匹配的字符串。时间复杂度是O(m*n)。</p>
-<h4 id="（2）BM算法"><a href="#（2）BM算法" class="headerlink" title="（2）BM算法"></a>（2）BM算法</h4><p>​    全称Boyer-Moore算法，时间复杂度是O(m+n)，而且是可以跳跃着查找，但不适合characterSet太小的情况.</p>
-<p>​    Boyer算法的特点是定义了两个规则，一个是坏字符规则，另外一个是好后缀规则。其中好后缀规则和KMP算法中的后缀定位跳跃的位置相似。</p>
-<p>参考的网址：<a href="https://blog.csdn.net/qzp1991/article/details/42663969" target="_blank" rel="noopener">https://blog.csdn.net/qzp1991/article/details/42663969</a></p>
-<h4 id="（3）Sunday算法"><a href="#（3）Sunday算法" class="headerlink" title="（3）Sunday算法"></a>（3）Sunday算法</h4><p><a href="https://blog.csdn.net/wonder233/article/details/79035403" target="_blank" rel="noopener">https://blog.csdn.net/wonder233/article/details/79035403</a></p>
-<h4 id="（4）KMP算法"><a href="#（4）KMP算法" class="headerlink" title="（4）KMP算法"></a>（4）KMP算法</h4><p>​    KMP算法，是由Knuth，Morris，Pratt共同提出的模式匹配算法，其对于任何模式和目标序列，都可以在线性时间内完成匹配查找，而不会发生退化，是一个非常优秀的模式匹配算法。</p>
-<p>​    KMP算法的核心是算出数组next（用来计算目标字符串[模式串]的最大前缀和最大后缀的长度）。</p>
-<blockquote>
-<p>​    举个例子，主串：<strong>··· a b a a b a ···</strong></p>
-<p>​                    模式串：  <strong>··· a b a a ···</strong></p>
-<p>next数组：</p>
-<table>
-<thead>
-<tr>
-<th align="center">a</th>
-<th align="center">b</th>
-<th align="center">a</th>
-<th align="center">a</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">1</td>
-<td align="center">1</td>
-</tr>
-</tbody></table>
-<p>&lt;1&gt; 第一种子串：模式串中的子字符串长度为1：”a“，所以没有前缀和后缀可言。</p>
-<p>&lt;2&gt;第二种子串：模式串中的子字符串长度为2：”ab“，前缀后缀不相同所以为零；</p>
-<p>&lt;3&gt;第三种子串：模式串中的子字符串长度为3：”aba“，前缀后缀子串最大长度是1，即”a“，所以是1；</p>
-<p>&lt;4&gt;第四个子串：模式串中的子字符串长度为4：”abaa“，前缀后缀子串最大长度是1，即”a“，所以是1；</p>
-</blockquote>
-<h4 id="（5）Tire树"><a href="#（5）Tire树" class="headerlink" title="（5）Tire树"></a>（5）Tire树</h4><h2 id="4-排序"><a href="#4-排序" class="headerlink" title="4.排序"></a>4.排序</h2><h4 id="（1）插入"><a href="#（1）插入" class="headerlink" title="（1）插入"></a>（1）插入</h4><h4 id="（2）交换"><a href="#（2）交换" class="headerlink" title="（2）交换"></a>（2）交换</h4><h4 id="（3）选择"><a href="#（3）选择" class="headerlink" title="（3）选择"></a>（3）选择</h4><h4 id="（4）归并"><a href="#（4）归并" class="headerlink" title="（4）归并"></a>（4）归并</h4><h4 id="（5）基数"><a href="#（5）基数" class="headerlink" title="（5）基数"></a>（5）基数</h4><h2 id="5-查找"><a href="#5-查找" class="headerlink" title="5.查找"></a>5.查找</h2><h4 id="（1）二分查找"><a href="#（1）二分查找" class="headerlink" title="（1）二分查找"></a>（1）二分查找</h4><h4 id="（2）二叉排序树"><a href="#（2）二叉排序树" class="headerlink" title="（2）二叉排序树"></a>（2）二叉排序树</h4><h4 id="（3）B树"><a href="#（3）B树" class="headerlink" title="（3）B树"></a>（3）B树</h4><h4 id="（4）Hash"><a href="#（4）Hash" class="headerlink" title="（4）Hash"></a>（4）Hash</h4><h4 id="（5）BloomFilter"><a href="#（5）BloomFilter" class="headerlink" title="（5）BloomFilter"></a>（5）BloomFilter</h4>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/17/算法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-数据结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><h2 id="1-队列"><a href="#1-队列" class="headerlink" title="1.队列"></a>1.队列</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//数组实现队列：这是个循环链表，关键在于队头和队尾的关系 (rear + 1) % array.length == front</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyQueueArray</span>&lt;<span class="title">E</span>&gt; </span>&#123;    </span><br><span class="line">    <span class="keyword">private</span> E[] array;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> front;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> rear;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyQueueArray</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.array = (E[]) <span class="keyword">new</span> Object[capacity];    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">enQueue</span><span class="params">(E element)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ((rear + <span class="number">1</span>) % array.length == front) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;        </span><br><span class="line">        &#125;        </span><br><span class="line">        array[rear] = element;</span><br><span class="line">        rear = (rear + <span class="number">1</span>) % array.length;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">deQueue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (rear == front) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;        </span><br><span class="line">        E deQueueElement = array[front];</span><br><span class="line">        front = (front + <span class="number">1</span>) % array.length;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">output</span><span class="params">()</span> </span>&#123;        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = front; i != rear; i = (i + <span class="number">1</span>) % array.length) &#123;            </span><br><span class="line">            System.out.println(array[i]);</span><br><span class="line">        &#125;    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用链表实现对列</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyQueueLinkedList</span>&lt;<span class="title">E</span>&gt; </span>&#123;    </span><br><span class="line">    <span class="keyword">private</span> LinkedList&lt;E&gt; linkedList = <span class="keyword">new</span> LinkedList&lt;E&gt;();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">enQueue</span><span class="params">(E e)</span> </span>&#123;        </span><br><span class="line">        linkedList.addLast(e);    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> E <span class="title">deQueue</span><span class="params">()</span> </span>&#123;        </span><br><span class="line">        E e = linkedList.removeFirst();        </span><br><span class="line">        <span class="keyword">return</span> e;    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isNull</span><span class="params">()</span> </span>&#123;        </span><br><span class="line">        <span class="keyword">return</span> linkedList.isEmpty();    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;        </span><br><span class="line">        <span class="keyword">return</span> linkedList.toString();    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-栈"><a href="#2-栈" class="headerlink" title="2.栈"></a>2.栈</h2><h4 id="栈的实现："><a href="#栈的实现：" class="headerlink" title="栈的实现："></a>栈的实现：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyStack</span>&lt;<span class="title">E</span>&gt; </span>&#123;    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 用数组表示栈元素</span></span><br><span class="line"><span class="comment">    * 栈空间大小</span></span><br><span class="line"><span class="comment">    *栈顶指针</span></span><br><span class="line"><span class="comment">    */</span>    </span><br><span class="line">    <span class="keyword">private</span> E[] data;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> maxSize;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> top;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyStack</span><span class="params">(<span class="keyword">int</span> maxSize)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.maxSize = maxSize;</span><br><span class="line">        <span class="comment">/**         </span></span><br><span class="line"><span class="comment">        * 泛型数组不能直接new创建，需要使用Object来创建。         </span></span><br><span class="line"><span class="comment">        */</span>        </span><br><span class="line">        <span class="keyword">this</span>.data = (E[]) <span class="keyword">new</span> Object[maxSize];</span><br><span class="line">        <span class="keyword">this</span>.top = -<span class="number">1</span>;    </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isNull</span><span class="params">()</span> </span>&#123;        </span><br><span class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">this</span>.top &lt;= -<span class="number">1</span> ? <span class="keyword">true</span> : <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">return</span> flag;    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isFull</span><span class="params">()</span> </span>&#123;        </span><br><span class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">this</span>.top == <span class="keyword">this</span>.maxSize - <span class="number">1</span> ? <span class="keyword">true</span> : <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">return</span> flag;    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> E <span class="title">popArray</span><span class="params">()</span> </span>&#123;        </span><br><span class="line">        <span class="keyword">if</span> (isNull()) &#123;            </span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;        </span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;            </span><br><span class="line">            E value = data[top];</span><br><span class="line">            --top;            </span><br><span class="line">            <span class="comment">//取出栈顶元素            </span></span><br><span class="line">            <span class="keyword">return</span> value;        </span><br><span class="line">        &#125;    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">pushArray</span><span class="params">(E value)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isFull()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//栈指针加1并赋值            </span></span><br><span class="line">            data[++top] = value;            </span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;        </span><br><span class="line">        &#125;    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//链表实现栈</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyStackList</span>&lt;<span class="title">E</span>&gt; </span>&#123;    </span><br><span class="line">    <span class="keyword">private</span> LinkedList&lt;E&gt; linkedList = <span class="keyword">new</span> LinkedList&lt;E&gt;();    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pushLinkedList</span><span class="params">(E e)</span> </span>&#123;        </span><br><span class="line">        linkedList.add(e);    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> E <span class="title">popLinkedList</span><span class="params">()</span> </span>&#123;        </span><br><span class="line">        E e = linkedList.removeLast();</span><br><span class="line">        <span class="keyword">return</span> e;    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isNull</span><span class="params">()</span> </span>&#123;        </span><br><span class="line">        <span class="keyword">return</span> linkedList.isEmpty();    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> linkedList.toString();    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="3-表"><a href="#3-表" class="headerlink" title="3.表"></a>3.表</h2><h4 id="（1）数组"><a href="#（1）数组" class="headerlink" title="（1）数组"></a>（1）数组</h4><h4 id="（2）单链表"><a href="#（2）单链表" class="headerlink" title="（2）单链表"></a>（2）单链表</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyLinkedList</span> </span>&#123;    </span><br><span class="line">    Node head = <span class="keyword">null</span>;</span><br><span class="line">    Node last = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">int</span> size;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> data)</span> </span>&#123;</span><br><span class="line">        Node newNode = <span class="keyword">new</span> Node(data);</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">            head = newNode;</span><br><span class="line">            size++;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;        </span><br><span class="line">        Node temp = head;</span><br><span class="line">        <span class="keyword">while</span>(temp.next != <span class="keyword">null</span>) &#123;</span><br><span class="line">            temp = temp.next;</span><br><span class="line">        &#125;</span><br><span class="line">        temp.next = newNode;</span><br><span class="line">        size++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> data, <span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (index &lt; <span class="number">0</span> || index &gt; size) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(<span class="string">"The index is out of bounds."</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        Node insertedNode = <span class="keyword">new</span> Node(data);</span><br><span class="line">        <span class="keyword">if</span> (size == <span class="number">0</span>) &#123;</span><br><span class="line">            head = insertedNode;</span><br><span class="line">            last = insertedNode;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (index == <span class="number">0</span>) &#123;</span><br><span class="line">            insertedNode.next = head;</span><br><span class="line">            head = insertedNode;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (index == size) &#123;</span><br><span class="line">            last.next = insertedNode;</span><br><span class="line">            last = insertedNode;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            Node prevNode = get(index - <span class="number">1</span>);</span><br><span class="line">            Node nextNode = get(index);</span><br><span class="line">            prevNode.next = insertedNode;</span><br><span class="line">            insertedNode.next = nextNode;</span><br><span class="line">        &#125;</span><br><span class="line">        size++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> Node <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (index &lt; <span class="number">0</span> || index &gt;= size) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(<span class="string">"超出实际链表界限。"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        Node temp = head;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; index; i++) &#123;</span><br><span class="line">            temp = temp.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (index &lt; <span class="number">0</span> || index &gt;= size) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(<span class="string">"超出实际链表界限。"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        Node removedNode = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (index == <span class="number">0</span>) &#123;</span><br><span class="line">            removedNode = head;</span><br><span class="line">            head = head.next;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (index == size - <span class="number">1</span>) &#123;</span><br><span class="line">            removedNode = get(index - <span class="number">1</span>);</span><br><span class="line">            last = get(index - <span class="number">2</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            removedNode = get(index);</span><br><span class="line">            Node prevNode = get(index - <span class="number">1</span>);</span><br><span class="line">            Node nextNode = get(index + <span class="number">1</span>);</span><br><span class="line">            prevNode.next = get(index + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        size--;</span><br><span class="line">        <span class="keyword">return</span> removedNode;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">output</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Node temp = head;</span><br><span class="line">        <span class="keyword">while</span> (temp != <span class="keyword">null</span>) &#123;</span><br><span class="line">            System.out.println(temp.data);</span><br><span class="line">            temp = temp.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> data;</span><br><span class="line">        Node next = <span class="keyword">null</span>;</span><br><span class="line">        Node(<span class="keyword">int</span> data) &#123;</span><br><span class="line">            <span class="keyword">this</span>.data = data;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="（3）双链表"><a href="#（3）双链表" class="headerlink" title="（3）双链表"></a>（3）双链表</h4><h4 id="（4）循环链表"><a href="#（4）循环链表" class="headerlink" title="（4）循环链表"></a>（4）循环链表</h4><h4 id="（5）散列表"><a href="#（5）散列表" class="headerlink" title="（5）散列表"></a>（5）散列表</h4><p>​    <strong>散列表也叫做哈希表，这种数据结构提供了键和值的映射。其中的键值对在Java中称为Entry；</strong></p>
-<p>​    <strong>（1）哈希函数：在JDK（Java Development Kit）中的哈希函数并没有直接采取取模运算，而是利用了位运算的方式来优化性能。不过在这里可以姑且简单理解成取模操作；</strong></p>
-<p>​                                                <strong>index = HashCode(Key) % Array.length</strong></p>
-<p><strong>（1）写操作（put）：举个例子，如调用hashMap.put(“002931”,”王五”)，意思是插入一组Key为002931、Value为王五的键值对。</strong></p>
-<p>​        <strong>（Ⅰ）通过哈希函数，把Key转化成数组下标5；</strong></p>
-<p>​        <strong>（Ⅱ）如果数组下标5对应的位置没有元素，酒吧这个Entry填充到数组下标5的位置。</strong></p>
-<p>​            <strong>由于数组的长度是有限的，当插入的Entry越来越多时，不同的Key通过哈希函数获得下标有可能是相同        的。这种情况称为哈希冲突。</strong></p>
-<p>​        <strong>哈希冲突是无法避免的，解决哈希冲突有两种办法，一种是开放寻址法，一种是链表法。</strong></p>
-<p>​        <strong>（Ⅰ）开放寻址法：当一个Key的下标被占用时，寻找下一个空档的位置。</strong></p>
-<p>​        <strong>（Ⅱ）链表法：这种方法被应用在了Java的集合类HashMap当中。HashMap数组的每一个元素不仅是一个                    Entry对象，还是一个链表的头节点。每一个Entry对象通过next指针指向下一个节点。当新来的                    Entry映射到与之冲突的数组位置时，只需要插入到对应的链表中即可。</strong></p>
-<p><strong>（2）读操作（get）：举个例子，调用hashMap.get(“002936”)，意思是查找Key为002936的Entry在散列表</strong></p>
-<p>​        <strong>（I）通过哈希函数，把Key转化为数组下标5。</strong></p>
-<p>​        <strong>（II）找到数组下标2所对应的元素，如果没有则在元素对应的链表顺着往下找，看看能否与Key相匹配的节        点。</strong></p>
-<p><strong>（3）扩容（resize）：当经过多次元素插入，散列表达到一定饱和度时，Key映射位置发生冲突的概率会逐渐提高。这样会导致大量元素拥挤在相同的数组下标位置，形成很长的链表，对后续插入操作和查询操作的性能都有很大影响。</strong></p>
-<p>​            <strong>JDK中的散列表实现类HashMap来说，影响其扩容的因素有两个。</strong></p>
-<p>​            <strong>1：Capacity,</strong>即HashMap的当前长度</p>
-<p>​            <strong>2：LoadFactor，</strong>即HashMap的负载因子，默认值为0.75f</p>
-<p>​            <strong>衡量HashMap需要进行扩容的条件如下。</strong></p>
-<p>​                                            <strong>HashMap.Size &gt;= Capacity x LoadFactor</strong></p>
-<h2 id="4-图"><a href="#4-图" class="headerlink" title="4.图"></a>4.图</h2><p>图，是一种比树更为复杂的数据结构。树的节点之间是一对多的关系，并且存在父子层级划分；而图的顶点（在图里面不叫节点）之间是多对多的关系，并且所有顶点都是平等的，无所谓谁是父谁是子。</p>
-<h2 id="5-多叉树"><a href="#5-多叉树" class="headerlink" title="5.多叉树"></a>5.多叉树</h2><p><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1565405561495.png" alt="1565405561495"></p>
-<h4 id="（1）B、B-树"><a href="#（1）B、B-树" class="headerlink" title="（1）B、B+树"></a>（1）B、B+树</h4><p>​    B树也叫做B-树，在了解B+树之前需要了解B树的原理。（中间的横杠不是减号，读成B减树会丢人）</p>
-<p>​    </p>
-<h4 id="（2）字典树"><a href="#（2）字典树" class="headerlink" title="（2）字典树"></a>（2）字典树</h4><h2 id="6-二叉树"><a href="#6-二叉树" class="headerlink" title="6.二叉树"></a>6.二叉树</h2><p>二叉树最主要的应用还是进行<strong>查找操作</strong>和<strong>维持相对顺序</strong>。</p>
-<p>（1）二叉查找树：（查找）</p>
-<ul>
-<li><strong>如果左子树不为空，则左子树上所有节点的值均小于根节点的值</strong></li>
-<li><strong>如果右子树不为空，则右子树上所有节点的值均大于根节点的值</strong></li>
-<li><strong>左、右子树也都是二叉查找树</strong></li>
-</ul>
-<p>例子参考漫画算法P68。</p>
-<p>代码实现：</p>
-<p>​    对于节点分布相对平衡的二叉查找树来说，如果节点总数是n，那么搜索节点的时间复杂度就是O(logn)，和书的深度是一样的。有点类似于二分查找。</p>
-<p>（2）二叉排序树：（维持相对顺序）</p>
-<pre><code>二叉查找树另一个名字叫做二叉排序树。</code></pre><p>​          图解参考P70。</p>
-<p>​          不过有个致命的问题，容易导致”跛脚“，查询节点的时间复杂度也退化成了O(n)。</p>
-<p>（3）二叉树的遍历</p>
-<p><strong>深度优先遍历：</strong></p>
-<ul>
-<li><strong>前序遍历</strong></li>
-<li><strong>中序遍历</strong></li>
-<li><strong>后序遍历</strong></li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BinaryTree</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**     </span></span><br><span class="line"><span class="comment">    *构建二叉树     </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> inputList 输入序列     </span></span><br><span class="line"><span class="comment">    */</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> TreeNode <span class="title">createBinaryTree</span><span class="params">(LinkedList&lt;Integer&gt; inputList)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//3, 2, 9, null, null, 10, null, null, 8, null, 4</span></span><br><span class="line">        TreeNode node = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (inputList == <span class="keyword">null</span> || inputList.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Integer data = inputList.removeFirst();</span><br><span class="line">        <span class="keyword">if</span> (data != <span class="keyword">null</span>) &#123;</span><br><span class="line">            node = <span class="keyword">new</span> TreeNode(data);</span><br><span class="line">            node.leftChild = createBinaryTree(inputList);</span><br><span class="line">            node.rightChild = createBinaryTree(inputList);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 二叉树前序遍历</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> node 二叉树节点</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">preorderTraveral</span><span class="params">(TreeNode node)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//3, 2, 9, null, null, 10, null, null, 8, null, 4</span></span><br><span class="line">        <span class="keyword">if</span> (node == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(node.data);</span><br><span class="line">        preorderTraveral(node.leftChild);</span><br><span class="line">        preorderTraveral(node.rightChild);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 栈的二叉树前序遍历</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> node 二叉树节点</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">preTraveralStack1</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</span><br><span class="line">           <span class="keyword">return</span>;</span><br><span class="line">       &#125;</span><br><span class="line">        Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        stack.add(root);</span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty()) &#123;</span><br><span class="line">            TreeNode node = stack.pop();</span><br><span class="line">            <span class="keyword">if</span> (node.rightChild != <span class="keyword">null</span>) &#123;</span><br><span class="line">                stack.push(node.rightChild);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (node.leftChild != <span class="keyword">null</span>) &#123;</span><br><span class="line">                stack.push(node.leftChild);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(node.data + <span class="string">" "</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">preorderTraveralStack2</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack&lt;TreeNode&gt;();</span><br><span class="line">        TreeNode treeNode = root;</span><br><span class="line">        <span class="keyword">while</span> (treeNode != <span class="keyword">null</span> || !stack.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">while</span> (treeNode != <span class="keyword">null</span>) &#123;</span><br><span class="line">                System.out.println(treeNode.data);</span><br><span class="line">                stack.push(treeNode);</span><br><span class="line">                treeNode = treeNode.leftChild;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (!stack.isEmpty()) &#123;</span><br><span class="line">                treeNode = stack.pop();</span><br><span class="line">                treeNode = treeNode.rightChild;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**     </span></span><br><span class="line"><span class="comment">    *二叉树的中序遍历     </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> node 二叉树节点     </span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">inorderTraveral</span><span class="params">(TreeNode node)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (node == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        inorderTraveral(node.leftChild);</span><br><span class="line">        System.out.println(node.data);</span><br><span class="line">        inorderTraveral(node.rightChild);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 栈实现中序遍历</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> root</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">inorderTraveralStack</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        TreeNode treeNode = root;</span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty() || treeNode != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">while</span> (treeNode != <span class="keyword">null</span>) &#123;</span><br><span class="line">                stack.push(treeNode);</span><br><span class="line">                treeNode = treeNode.leftChild;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (!stack.isEmpty()) &#123;</span><br><span class="line">                treeNode = stack.pop();</span><br><span class="line">                System.out.println(treeNode.data);</span><br><span class="line">                treeNode = treeNode.rightChild;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 二叉树的后序遍历</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> node 二叉树节点</span></span><br><span class="line"><span class="comment">    */</span> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">postorderTraveral</span><span class="params">(TreeNode node)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (node == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        postorderTraveral(node.leftChild);</span><br><span class="line">        postorderTraveral(node.rightChild);</span><br><span class="line">        System.out.println(node.data);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 栈实现后序遍历</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> root</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">postTraversalStack2</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        Stack&lt;TreeNode&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        stack.push(root);</span><br><span class="line">        TreeNode lastNode = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">while</span> (stack.peek().leftChild != <span class="keyword">null</span>) &#123;</span><br><span class="line">                stack.push(stack.peek().leftChild);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span> (!stack.isEmpty()) &#123;</span><br><span class="line">                <span class="keyword">if</span> (lastNode == stack.peek().rightChild || </span><br><span class="line">                    stack.peek().rightChild == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    TreeNode node = stack.pop();</span><br><span class="line">                    System.out.println(node.data + <span class="string">" "</span>);</span><br><span class="line">                    lastNode = node;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (stack.peek().rightChild != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    stack.push(stack.peek().rightChild);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 二叉树节点</span></span><br><span class="line"><span class="comment">    * 官方定义</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> data;</span><br><span class="line">        TreeNode leftChild;</span><br><span class="line">        TreeNode rightChild;</span><br><span class="line">        TreeNode(<span class="keyword">int</span> data) &#123;</span><br><span class="line">            <span class="keyword">this</span>.data = data;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        LinkedList&lt;Integer&gt; inputList = <span class="keyword">new</span> LinkedList&lt;&gt;(Arrays.                				asList(<span class="keyword">new</span> Integer[]&#123;<span class="number">3</span>, <span class="number">2</span>, <span class="number">9</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="number">10</span>, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="number">8</span>, <span class="keyword">null</span>, <span class="number">4</span>&#125;));</span><br><span class="line">        TreeNode treeNode = createBinaryTree(inputList);</span><br><span class="line">        System.out.println(<span class="string">"前序遍历："</span>);</span><br><span class="line">        BinaryTree.preorderTraveral(treeNode);</span><br><span class="line">        System.out.println(<span class="string">"中序遍历："</span>);</span><br><span class="line">        BinaryTree.inorderTraveral(treeNode);</span><br><span class="line">        System.out.println(<span class="string">"后序遍历："</span>);</span><br><span class="line">        BinaryTree.postorderTraveral(treeNode);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>广度优先遍历：</strong></p>
-<ul>
-<li><strong>层序遍历：</strong></li>
-</ul>
-<p>先序和后序，不能唯一确定二叉树</p>
-<p>先序和中序，能唯一确定二叉树</p>
-<p>后序和中序，能唯一确定二叉树</p>
-<p>先序、中序相同时，二叉树没有左子树</p>
-<p>后序、中序相同时，二叉树没有右子树</p>
-<p>后序、先序相同时，只有一个根节点</p>
-<p><img src="C:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1565405627003.png" alt="1565405627003"></p>
-<h4 id="（1）平衡二叉树"><a href="#（1）平衡二叉树" class="headerlink" title="（1）平衡二叉树"></a>（1）平衡二叉树</h4><h4 id="（2）红黑树"><a href="#（2）红黑树" class="headerlink" title="（2）红黑树"></a>（2）红黑树</h4><h4 id="（3）哈夫曼树"><a href="#（3）哈夫曼树" class="headerlink" title="（3）哈夫曼树"></a>（3）哈夫曼树</h4><h4 id="（4）堆"><a href="#（4）堆" class="headerlink" title="（4）堆"></a>（4）堆</h4><ul>
-<li><strong>二叉堆</strong></li>
-</ul>
-<p>二叉堆的实现：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Heap</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**     </span></span><br><span class="line"><span class="comment">    * "上浮"操作     </span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> array     </span></span><br><span class="line"><span class="comment">    */</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">upAdjust</span><span class="params">(<span class="keyword">int</span>[] array)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> childIndex = array.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> parentIndex = (childIndex - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> temp = array[childIndex];</span><br><span class="line">        <span class="keyword">while</span> (childIndex &gt; <span class="number">0</span> &amp;&amp; temp &lt; array[parentIndex]) &#123;</span><br><span class="line">            array[childIndex] = array[parentIndex];</span><br><span class="line">            childIndex = parentIndex;</span><br><span class="line">            parentIndex = (parentIndex - <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        array[childIndex] = temp;</span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * "下沉"调整</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> array</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> parentIndex</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> length</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">downAdjust</span><span class="params">(<span class="keyword">int</span>[] array, <span class="keyword">int</span> parentIndex, <span class="keyword">int</span> length)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> temp = array[parentIndex];</span><br><span class="line">        <span class="keyword">int</span> childIndex = <span class="number">2</span> * parentIndex + <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//整个循环只进行</span></span><br><span class="line">        <span class="keyword">while</span> (childIndex &lt; length) &#123;</span><br><span class="line">            <span class="comment">//判断左右子树谁比较小</span></span><br><span class="line">            <span class="keyword">if</span> (childIndex + <span class="number">1</span> &lt; length &amp;&amp; </span><br><span class="line">                array[childIndex + <span class="number">1</span>] &lt; array[childIndex]) &#123;</span><br><span class="line">                childIndex ++;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">//判断是否需要进行移位</span></span><br><span class="line">            <span class="keyword">if</span> (temp &lt;= array[childIndex]) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">//只进行单向赋值</span></span><br><span class="line">            array[parentIndex] = array[childIndex];</span><br><span class="line">            parentIndex = childIndex;</span><br><span class="line">            childIndex = <span class="number">2</span> * childIndex + <span class="number">1</span>;</span><br><span class="line">        &#125; </span><br><span class="line">        array[parentIndex] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 构建堆</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> array</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">buildHeap</span><span class="params">(<span class="keyword">int</span>[] array)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//将每个根节点都判断一遍，是否符合最小堆的规律</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = (array.length - <span class="number">2</span>) / <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            downAdjust(array, i, array.length);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] array = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">0</span>&#125;;</span><br><span class="line">        upAdjust(array);</span><br><span class="line">        System.out.println(Arrays.toString(array));</span><br><span class="line">        array = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;<span class="number">7</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">10</span>, <span class="number">5</span>, <span class="number">2</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">6</span>&#125;;</span><br><span class="line">        buildHeap(array); </span><br><span class="line">        System.out.println(Arrays.toString(array));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/17/数据结构/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-常用Linux命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="常用Linux命令"><a href="#常用Linux命令" class="headerlink" title="常用Linux命令"></a>常用Linux命令</h1><h2 id="1-awk"><a href="#1-awk" class="headerlink" title="1.awk"></a><strong>1.awk</strong></h2>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/17/常用Linux命令/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-操作系统和计算机网络" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<p>title: 计算机网络</p>
-<p>date: 2019/6/5</p>
-<p>tags: IP/TCP</p>
-<hr>
-<hr>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/17/操作系统和计算机网络/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java 泛型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Java-泛型"><a href="#Java-泛型" class="headerlink" title="Java 泛型"></a>Java 泛型</h1><h2 id="1-泛型与继承"><a href="#1-泛型与继承" class="headerlink" title="1.泛型与继承"></a>1.泛型与继承</h2><h2 id="2-类型擦除"><a href="#2-类型擦除" class="headerlink" title="2.类型擦除"></a>2.类型擦除</h2><h2 id="3-泛型中KTCVE"><a href="#3-泛型中KTCVE" class="headerlink" title="3.泛型中KTCVE"></a>3.泛型中KTCVE</h2><h2 id="4-Object等的含义"><a href="#4-Object等的含义" class="headerlink" title="4.Object等的含义"></a>4.Object等的含义</h2><h2 id="5-泛型的用法"><a href="#5-泛型的用法" class="headerlink" title="5.泛型的用法"></a>5.泛型的用法</h2><h2 id="6-限定通配符和非限定通配符"><a href="#6-限定通配符和非限定通配符" class="headerlink" title="6.限定通配符和非限定通配符"></a>6.限定通配符和非限定通配符</h2><h2 id="7-上下界限定符"><a href="#7-上下界限定符" class="headerlink" title="7.上下界限定符"></a>7.上下界限定符</h2><h2 id="8-extends和super"><a href="#8-extends和super" class="headerlink" title="8.extends和super"></a>8.extends和super</h2><h2 id="9-List和原始类型List的区别"><a href="#9-List和原始类型List的区别" class="headerlink" title="9.List和原始类型List的区别"></a>9.List<object>和原始类型List的区别</object></h2><h2 id="10-List-lt-gt-和List之间的区别"><a href="#10-List-lt-gt-和List之间的区别" class="headerlink" title="10.List&lt;?&gt;和List之间的区别"></a>10.List&lt;?&gt;和List<object>之间的区别</object></h2>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/17/Java 泛型/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-线程切换的步骤" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/17/线程切换的步骤/">线程切换的步骤以及代价</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/17/线程切换的步骤/" class="archive-article-date">
-  	<time datetime="2019-08-16T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">线程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/17/线程切换的步骤/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -823,8 +308,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

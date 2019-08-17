@@ -8,13 +8,20 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>XIXIXI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="数据结构1.队列123456789101112131415161718192021222324252627282930//数组实现队列：这是个循环链表，关键在于队头和队尾的关系 (rear + 1) % array.length == frontpublic class MyQueueArray&amp;lt;E&amp;gt; &amp;#123;        private E[] array;    privat">
+<meta property="og:type" content="article">
 <meta property="og:title" content="XIXIXI">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/08/17/数据结构/index.html">
 <meta property="og:site_name" content="XIXIXI">
+<meta property="og:description" content="数据结构1.队列123456789101112131415161718192021222324252627282930//数组实现队列：这是个循环链表，关键在于队头和队尾的关系 (rear + 1) % array.length == frontpublic class MyQueueArray&amp;lt;E&amp;gt; &amp;#123;        private E[] array;    privat">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="c:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1565405561495.png">
+<meta property="og:image" content="c:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1565405627003.png">
+<meta property="og:updated_time" content="2019-08-16T18:31:45.773Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XIXIXI">
+<meta name="twitter:description" content="数据结构1.队列123456789101112131415161718192021222324252627282930//数组实现队列：这是个循环链表，关键在于队头和队尾的关系 (rear + 1) % array.length == frontpublic class MyQueueArray&amp;lt;E&amp;gt; &amp;#123;        private E[] array;    privat">
+<meta name="twitter:image" content="c:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1565405561495.png">
   
     <link rel="alternative" href="/atom.xml" title="XIXIXI" type="application/atom+xml">
   
@@ -136,330 +143,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-hashcode笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>一、hashcode是什么？</strong></p>
-<p>　　　1、hash和hash表是什么？　　　</p>
-<p>　　　　　　想要知道这个hashcode，首先得知道hash，通过百度百科看一下</p>
-<p>　　　　　　　　　　　　　　<img src="https://images2015.cnblogs.com/blog/874710/201611/874710-20161116202528013-1417169655.png" alt="img"></p>
-<p>　　　　　　　　　　　　　　　　<img src="https://images2015.cnblogs.com/blog/874710/201611/874710-20161116202950092-1019467368.png" alt="img"></p>
-<p>　　　　　　hash是一个函数，该函数中的实现就是一种算法，就是通过一系列的算法来得到一个hash值，这个时候，我们就需要知道另一个东西，hash表，通过hash算法得到的hash值就在这张hash表中，也就是说，hash表就是所有的hash值组成的，有很多种hash函数，也就代表着有很多种算法得到hash值，如上面截图的三种，等会我们就拿第一种来说。</p>
-<p>　　　2、hashcode　</p>
-<p>　　　　　　有了前面的基础，这里讲解就简单了，hashcode就是通过hash函数得来的，通俗的说，就是通过某一种算法得到的，hashcode就是在hash表中有对应的位置。</p>
-<p>　　　　　　每个对象都有hashcode，对象的hashcode怎么得来的呢？</p>
-<p>　　　　　　　　　　首先一个对象肯定有物理地址，在别的博文中会hashcode说成是代表对象的地址，这里肯定会让读者形成误区，对象的物理地址跟这个hashcode地址不一样，hashcode代表对象的地址说的是对象在hash表中的位置，物理地址说的对象存放在内存中的地址，那么对象如何得到hashcode呢？通过对象的内部地址(也就是物理地址)转换成一个整数，然后该整数通过hash函数的算法就得到了hashcode，所以，hashcode是什么呢？就是在hash表中对应的位置。这里如果还不是很清楚的话，举个例子，hash表中有 hashcode为1、hashcode为2、(…)3、4、5、6、7、8这样八个位置，有一个对象A，A的物理地址转换为一个整数17(这是假如)，就通过直接取余算法，17%8=1，那么A的hashcode就为1，且A就在hash表中1的位置。肯定会有其他疑问，接着看下面，这里只是举个例子来让你们知道什么是hashcode的意义。</p>
-<p><strong>二、hashcode有什么作用呢？</strong></p>
-<p>　　　　前面说了这么多关于hash函数，和hashcode是怎么得来的，还有hashcode对应的是hash表中的位置，可能大家就有疑问，为什么hashcode不直接写物理地址呢，还要另外用一张hash表来代表对象的地址？接下来就告诉你hashcode的作用，</p>
-<p>　　　　1、HashCode的存在主要是为了查找的快捷性，HashCode是用来在散列存储结构中确定对象的存储地址的(后半句说的用hashcode来代表对象就是在hash表中的位置)</p>
-<p>　　　　 　　  为什么hashcode就查找的更快，比如：我们有一个能存放1000个数这样大的内存中，在其中要存放1000个不一样的数字，用最笨的方法，就是存一个数字，就遍历一遍，看有没有相同得数，当存了900个数字，开始存901个数字的时候，就需要跟900个数字进行对比，这样就很麻烦，很是消耗时间，用hashcode来记录对象的位置，来看一下。hash表中有1、2、3、4、5、6、7、8个位置，存第一个数，hashcode为1，该数就放在hash表中1的位置，存到100个数字，hash表中8个位置会有很多数字了，1中可能有20个数字，存101个数字时，他先查hashcode值对应的位置，假设为1，那么就有20个数字和他的hashcode相同，他只需要跟这20个数字相比较(equals)，如果每一个相同，那么就放在1这个位置，这样比较的次数就少了很多，实际上hash表中有很多位置，这里只是举例只有8个，所以比较的次数会让你觉得也挺多的，实际上，如果hash表很大，那么比较的次数就很少很少了。  通过对原始方法和使用hashcode方法进行对比，我们就知道了hashcode的作用，并且为什么要使用hashcode了</p>
-<p><strong>三、equals方法和hashcode的关系？</strong></p>
-<p>　　　　　通过前面这个例子，大概可以知道，先通过hashcode来比较，如果hashcode相等，那么就用equals方法来比较两个对象是否相等，用个例子说明：上面说的hash表中的8个位置，就好比8个桶，每个桶里能装很多的对象，对象A通过hash函数算法得到将它放到1号桶中，当然肯定有别的对象也会放到1号桶中，如果对象B也通过算法分到了1号桶，那么它如何识别桶中其他对象是否和它一样呢，这时候就需要equals方法来进行筛选了。</p>
-<p>　　　　　　　1、如果两个对象equals相等，那么这两个对象的HashCode一定也相同</p>
-<p>　　　　　　  2、如果两个对象的HashCode相同，不代表两个对象就相同，只能说明这两个对象在散列存储结构中，存放于同一个位置</p>
-<p>　　这两条你们就能够理解了。</p>
-<p><strong>四、为什么equals方法重写的话，建议也一起重写hashcode方法？</strong></p>
-<p>　　　　　　（如果对象的equals方法被重写，那么对象的HashCode方法也尽量重写）</p>
-<p>　　　　　　举个例子，其实就明白了这个道理，</p>
-<p>　　　　　　　　比如：有个A类重写了equals方法，但是没有重写hashCode方法，看输出结果，对象a1和对象a2使用equals方法相等，按照上面的hashcode的用法，那么他们两个的hashcode肯定相等，但是这里由于没重写hashcode方法，他们两个hashcode并不一样，所以，我们在重写了equals方法后，尽量也重写了hashcode方法，通过一定的算法，使他们在equals相等时，也会有相同的hashcode值。</p>
-<p>　　　　　　　　　　　　　　<img src="https://images2015.cnblogs.com/blog/874710/201611/874710-20161116212819810-31016841.png" alt="img"></p>
-<p>　　　　实例：现在来看一下String的源码中的equals方法和hashcode方法。这个类就重写了这两个方法，现在为什么需要重写这两个方法了吧？</p>
-<p>　　　　　　　　equals方法：其实跟我上面写的那个例子是一样的原理，所以通过源码又知道了String的equals方法验证的是两个字符串的值是否一样。还有Double类也重写了这些方法。很多类有比较这类的，都重写了这两个方法，因为在所有类的父类Object中。equals的功能就是 “==”号的功能。你们还可以比较String对象的equals和==的区别啦。这里不再说明。</p>
-<p>　　　　　　　　<img src="https://images2015.cnblogs.com/blog/874710/201611/874710-20161116213248701-1976448309.png" alt="img"></p>
-<p>hashcode方法</p>
-<p>　　　　　　　　<img src="https://images2015.cnblogs.com/blog/874710/201611/874710-20161116213322170-1989555882.png" alt="img"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/17/hashcode笔记/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Collect接口介绍" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Collect接口介绍:</p>
-<p>Collection接口是最基本的集合接口.Collection派生了两个子接口Set和List,分别定义了两种不同的存储方式.</p>
-<p>1.Set接口</p>
-<p>​    Set接口继承于Collection接口,他没有提供额外的方法,但实现了Set接口的集合类中的元素</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/17/Collect接口介绍/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-语法知识巩固" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="语法知识巩固"><a href="#语法知识巩固" class="headerlink" title="语法知识巩固"></a>语法知识巩固</h1><h2 id="1-数组的定义："><a href="#1-数组的定义：" class="headerlink" title="1.数组的定义："></a>1.数组的定义：</h2><p><strong>（1）int[] a = new int[100];</strong></p>
-<p><strong>（2）a = new int[] {1, 2, 3, 4, 5};</strong></p>
-<p><strong>（3）int[] a = {1, 2, 3, 4, 5};</strong></p>
-<h2 id="2-链表的定义"><a href="#2-链表的定义" class="headerlink" title="2.链表的定义"></a>2.链表的定义</h2><p><strong>（1） LinkedList linkedList = new LinkedList();</strong></p>
-<p><strong>（2）LinkedList(Collection&lt;? extends E&gt; elements)：构造一个链表，将集合中的所有元素添加到这个链表中</strong></p>
-<p><strong>（3）addFirst(E e)：将某个元素添加到列表的头部</strong></p>
-<p>​          <strong>addLast(E e)：将某个元素添加到列表的尾部</strong></p>
-<p>​           <strong>E getFirst(E e)：返回头部元素</strong></p>
-<p>​           <strong>E getLast(E e)：返回尾部元素</strong></p>
-<p>​           <strong>E removeFirst()：删除头部元素并返回</strong></p>
-<p>​           <strong>E removeLast()：删除尾部元素并返回</strong></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/17/语法知识巩固/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-协程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="协程"><a href="#协程" class="headerlink" title="协程"></a><strong>协程</strong></h1><p>协程部分只需要了解协程更加轻量化,是在用户态下进行调度,线程的切换比上下文切换的代价低很多;</p>
-<p>还可以了解一下Java协程的第三方框架:Kilim 和 Quasar;</p>
-<h2 id="1-Kilim"><a href="#1-Kilim" class="headerlink" title="(1) Kilim"></a>(1) Kilim</h2><p>Kilim协程框架主要核心解决的问题:</p>
-<p>​    1.如何暂停处理当前任务,转而处理其他任务;</p>
-<p>​    2.如何恢复任务继续执行;</p>
-<p>Kilim主要干了以下的事情:</p>
-<p>​    1.利用字节码技术(基于ASM字节码框架),将普通代码转化为支持协程的代码;</p>
-<p>​    2.调用Pauseable方法的时候,如果暂停了就保存当前方法栈的State,暂停执行当前Task,将控制权交给Scheduler调度器;</p>
-<p>​    3.Scheduler调度器负责协调其他就绪的Task;</p>
-<p>​    4.之前暂停的Task恢复的时候,自动恢复State,恢复到上次执行的位置继续执行;</p>
-<h2 id="2-Quasar"><a href="#2-Quasar" class="headerlink" title="(2)Quasar"></a>(2)Quasar</h2>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/17/协程/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><h2 id="1-常用算法"><a href="#1-常用算法" class="headerlink" title="1.常用算法"></a>1.常用算法</h2><h4 id="（1）分治"><a href="#（1）分治" class="headerlink" title="（1）分治"></a>（1）分治</h4><h4 id="（2）动态规划"><a href="#（2）动态规划" class="headerlink" title="（2）动态规划"></a>（2）动态规划</h4><h4 id="（3）贪心"><a href="#（3）贪心" class="headerlink" title="（3）贪心"></a>（3）贪心</h4><h4 id="（4）回溯"><a href="#（4）回溯" class="headerlink" title="（4）回溯"></a>（4）回溯</h4><h4 id="（5）分支界定"><a href="#（5）分支界定" class="headerlink" title="（5）分支界定"></a>（5）分支界定</h4><h2 id="2-复杂度"><a href="#2-复杂度" class="headerlink" title="2.复杂度"></a>2.复杂度</h2><h4 id="（1）时间复杂度"><a href="#（1）时间复杂度" class="headerlink" title="（1）时间复杂度"></a>（1）时间复杂度</h4><h4 id="（2）空间复杂度"><a href="#（2）空间复杂度" class="headerlink" title="（2）空间复杂度"></a>（2）空间复杂度</h4><h2 id="3-字符串匹配"><a href="#3-字符串匹配" class="headerlink" title="3.字符串匹配"></a>3.字符串匹配</h2><h4 id="（1）BF算法"><a href="#（1）BF算法" class="headerlink" title="（1）BF算法"></a>（1）BF算法</h4><p>​    属于暴力破解字符串匹配问题，将所有的情况遍历一遍，时间复杂度比较大。说白了，就是一个个对比然后找出匹配的字符串。时间复杂度是O(m*n)。</p>
-<h4 id="（2）BM算法"><a href="#（2）BM算法" class="headerlink" title="（2）BM算法"></a>（2）BM算法</h4><p>​    全称Boyer-Moore算法，时间复杂度是O(m+n)，而且是可以跳跃着查找，但不适合characterSet太小的情况.</p>
-<p>​    Boyer算法的特点是定义了两个规则，一个是坏字符规则，另外一个是好后缀规则。其中好后缀规则和KMP算法中的后缀定位跳跃的位置相似。</p>
-<p>参考的网址：<a href="https://blog.csdn.net/qzp1991/article/details/42663969" target="_blank" rel="noopener">https://blog.csdn.net/qzp1991/article/details/42663969</a></p>
-<h4 id="（3）Sunday算法"><a href="#（3）Sunday算法" class="headerlink" title="（3）Sunday算法"></a>（3）Sunday算法</h4><p><a href="https://blog.csdn.net/wonder233/article/details/79035403" target="_blank" rel="noopener">https://blog.csdn.net/wonder233/article/details/79035403</a></p>
-<h4 id="（4）KMP算法"><a href="#（4）KMP算法" class="headerlink" title="（4）KMP算法"></a>（4）KMP算法</h4><p>​    KMP算法，是由Knuth，Morris，Pratt共同提出的模式匹配算法，其对于任何模式和目标序列，都可以在线性时间内完成匹配查找，而不会发生退化，是一个非常优秀的模式匹配算法。</p>
-<p>​    KMP算法的核心是算出数组next（用来计算目标字符串[模式串]的最大前缀和最大后缀的长度）。</p>
-<blockquote>
-<p>​    举个例子，主串：<strong>··· a b a a b a ···</strong></p>
-<p>​                    模式串：  <strong>··· a b a a ···</strong></p>
-<p>next数组：</p>
-<table>
-<thead>
-<tr>
-<th align="center">a</th>
-<th align="center">b</th>
-<th align="center">a</th>
-<th align="center">a</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">1</td>
-<td align="center">1</td>
-</tr>
-</tbody></table>
-<p>&lt;1&gt; 第一种子串：模式串中的子字符串长度为1：”a“，所以没有前缀和后缀可言。</p>
-<p>&lt;2&gt;第二种子串：模式串中的子字符串长度为2：”ab“，前缀后缀不相同所以为零；</p>
-<p>&lt;3&gt;第三种子串：模式串中的子字符串长度为3：”aba“，前缀后缀子串最大长度是1，即”a“，所以是1；</p>
-<p>&lt;4&gt;第四个子串：模式串中的子字符串长度为4：”abaa“，前缀后缀子串最大长度是1，即”a“，所以是1；</p>
-</blockquote>
-<h4 id="（5）Tire树"><a href="#（5）Tire树" class="headerlink" title="（5）Tire树"></a>（5）Tire树</h4><h2 id="4-排序"><a href="#4-排序" class="headerlink" title="4.排序"></a>4.排序</h2><h4 id="（1）插入"><a href="#（1）插入" class="headerlink" title="（1）插入"></a>（1）插入</h4><h4 id="（2）交换"><a href="#（2）交换" class="headerlink" title="（2）交换"></a>（2）交换</h4><h4 id="（3）选择"><a href="#（3）选择" class="headerlink" title="（3）选择"></a>（3）选择</h4><h4 id="（4）归并"><a href="#（4）归并" class="headerlink" title="（4）归并"></a>（4）归并</h4><h4 id="（5）基数"><a href="#（5）基数" class="headerlink" title="（5）基数"></a>（5）基数</h4><h2 id="5-查找"><a href="#5-查找" class="headerlink" title="5.查找"></a>5.查找</h2><h4 id="（1）二分查找"><a href="#（1）二分查找" class="headerlink" title="（1）二分查找"></a>（1）二分查找</h4><h4 id="（2）二叉排序树"><a href="#（2）二叉排序树" class="headerlink" title="（2）二叉排序树"></a>（2）二叉排序树</h4><h4 id="（3）B树"><a href="#（3）B树" class="headerlink" title="（3）B树"></a>（3）B树</h4><h4 id="（4）Hash"><a href="#（4）Hash" class="headerlink" title="（4）Hash"></a>（4）Hash</h4><h4 id="（5）BloomFilter"><a href="#（5）BloomFilter" class="headerlink" title="（5）BloomFilter"></a>（5）BloomFilter</h4>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/17/算法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-数据结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-数据结构" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
@@ -538,6 +222,27 @@
       
 
       
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
     </div>
     <div class="article-info article-info-index">
       
@@ -545,16 +250,84 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/17/数据结构/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/17/数据结构/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2019/08/17/算法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/17/常用Linux命令/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -574,233 +347,14 @@
 
 
 
-
-  
-    <article id="post-常用Linux命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="常用Linux命令"><a href="#常用Linux命令" class="headerlink" title="常用Linux命令"></a>常用Linux命令</h1><h2 id="1-awk"><a href="#1-awk" class="headerlink" title="1.awk"></a><strong>1.awk</strong></h2>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/17/常用Linux命令/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-操作系统和计算机网络" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-<p>title: 计算机网络</p>
-<p>date: 2019/6/5</p>
-<p>tags: IP/TCP</p>
-<hr>
-<hr>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/17/操作系统和计算机网络/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Java 泛型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Java-泛型"><a href="#Java-泛型" class="headerlink" title="Java 泛型"></a>Java 泛型</h1><h2 id="1-泛型与继承"><a href="#1-泛型与继承" class="headerlink" title="1.泛型与继承"></a>1.泛型与继承</h2><h2 id="2-类型擦除"><a href="#2-类型擦除" class="headerlink" title="2.类型擦除"></a>2.类型擦除</h2><h2 id="3-泛型中KTCVE"><a href="#3-泛型中KTCVE" class="headerlink" title="3.泛型中KTCVE"></a>3.泛型中KTCVE</h2><h2 id="4-Object等的含义"><a href="#4-Object等的含义" class="headerlink" title="4.Object等的含义"></a>4.Object等的含义</h2><h2 id="5-泛型的用法"><a href="#5-泛型的用法" class="headerlink" title="5.泛型的用法"></a>5.泛型的用法</h2><h2 id="6-限定通配符和非限定通配符"><a href="#6-限定通配符和非限定通配符" class="headerlink" title="6.限定通配符和非限定通配符"></a>6.限定通配符和非限定通配符</h2><h2 id="7-上下界限定符"><a href="#7-上下界限定符" class="headerlink" title="7.上下界限定符"></a>7.上下界限定符</h2><h2 id="8-extends和super"><a href="#8-extends和super" class="headerlink" title="8.extends和super"></a>8.extends和super</h2><h2 id="9-List和原始类型List的区别"><a href="#9-List和原始类型List的区别" class="headerlink" title="9.List和原始类型List的区别"></a>9.List<object>和原始类型List的区别</object></h2><h2 id="10-List-lt-gt-和List之间的区别"><a href="#10-List-lt-gt-和List之间的区别" class="headerlink" title="10.List&lt;?&gt;和List之间的区别"></a>10.List&lt;?&gt;和List<object>之间的区别</object></h2>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/17/Java 泛型/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-线程切换的步骤" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/17/线程切换的步骤/">线程切换的步骤以及代价</a>
-    </h1>
-  
-
-        
-        <a href="/2019/08/17/线程切换的步骤/" class="archive-article-date">
-  	<time datetime="2019-08-16T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <hr>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">线程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/17/线程切换的步骤/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -823,8 +377,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
