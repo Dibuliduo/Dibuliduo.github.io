@@ -6,21 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>XIXIXI</title>
+  <title>数据结构基础 | XIXIXI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="数据结构1.队列123456789101112131415161718192021222324252627282930//数组实现队列：这是个循环链表，关键在于队头和队尾的关系 (rear + 1) % array.length == frontpublic class MyQueueArray&amp;lt;E&amp;gt; &amp;#123;        private E[] array;    privat">
+  <meta name="keywords" content="数据结构与算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="XIXIXI">
+<meta property="og:title" content="数据结构基础">
 <meta property="og:url" content="http://yoursite.com/2019/08/17/数据结构/index.html">
 <meta property="og:site_name" content="XIXIXI">
-<meta property="og:description" content="数据结构1.队列123456789101112131415161718192021222324252627282930//数组实现队列：这是个循环链表，关键在于队头和队尾的关系 (rear + 1) % array.length == frontpublic class MyQueueArray&amp;lt;E&amp;gt; &amp;#123;        private E[] array;    privat">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="c:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1565405561495.png">
 <meta property="og:image" content="c:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1565405627003.png">
-<meta property="og:updated_time" content="2019-08-16T18:31:45.773Z">
+<meta property="og:updated_time" content="2019-08-17T03:35:32.797Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="XIXIXI">
-<meta name="twitter:description" content="数据结构1.队列123456789101112131415161718192021222324252627282930//数组实现队列：这是个循环链表，关键在于队头和队尾的关系 (rear + 1) % array.length == frontpublic class MyQueueArray&amp;lt;E&amp;gt; &amp;#123;        private E[] array;    privat">
+<meta name="twitter:title" content="数据结构基础">
 <meta name="twitter:image" content="c:%5CUsers%5Cadmin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1565405561495.png">
   
     <link rel="alternative" href="/atom.xml" title="XIXIXI" type="application/atom+xml">
@@ -146,9 +144,27 @@
             <article id="post-数据结构" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据结构基础
+    </h1>
+  
+
+        
+        <a href="/2019/08/17/数据结构/" class="archive-article-date">
+  	<time datetime="2019-08-16T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-17</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><h2 id="1-队列"><a href="#1-队列" class="headerlink" title="1.队列"></a>1.队列</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//数组实现队列：这是个循环链表，关键在于队头和队尾的关系 (rear + 1) % array.length == front</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyQueueArray</span>&lt;<span class="title">E</span>&gt; </span>&#123;    </span><br><span class="line">    <span class="keyword">private</span> E[] array;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> front;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> rear;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyQueueArray</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.array = (E[]) <span class="keyword">new</span> Object[capacity];    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">enQueue</span><span class="params">(E element)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ((rear + <span class="number">1</span>) % array.length == front) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;        </span><br><span class="line">        &#125;        </span><br><span class="line">        array[rear] = element;</span><br><span class="line">        rear = (rear + <span class="number">1</span>) % array.length;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">deQueue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (rear == front) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;        </span><br><span class="line">        E deQueueElement = array[front];</span><br><span class="line">        front = (front + <span class="number">1</span>) % array.length;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">output</span><span class="params">()</span> </span>&#123;        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = front; i != rear; i = (i + <span class="number">1</span>) % array.length) &#123;            </span><br><span class="line">            System.out.println(array[i]);</span><br><span class="line">        &#125;    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <hr>
+<a id="more"></a>
+
+<h1 id="数据结构基础"><a href="#数据结构基础" class="headerlink" title="数据结构基础"></a>数据结构基础</h1><h2 id="1-队列"><a href="#1-队列" class="headerlink" title="1.队列"></a>1.队列</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//数组实现队列：这是个循环链表，关键在于队头和队尾的关系 (rear + 1) % array.length == front</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyQueueArray</span>&lt;<span class="title">E</span>&gt; </span>&#123;    </span><br><span class="line">    <span class="keyword">private</span> E[] array;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> front;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> rear;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyQueueArray</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.array = (E[]) <span class="keyword">new</span> Object[capacity];    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">enQueue</span><span class="params">(E element)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ((rear + <span class="number">1</span>) % array.length == front) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;        </span><br><span class="line">        &#125;        </span><br><span class="line">        array[rear] = element;</span><br><span class="line">        rear = (rear + <span class="number">1</span>) % array.length;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">deQueue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (rear == front) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;        </span><br><span class="line">        E deQueueElement = array[front];</span><br><span class="line">        front = (front + <span class="number">1</span>) % array.length;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">output</span><span class="params">()</span> </span>&#123;        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = front; i != rear; i = (i + <span class="number">1</span>) % array.length) &#123;            </span><br><span class="line">            System.out.println(array[i]);</span><br><span class="line">        &#125;    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用链表实现对列</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyQueueLinkedList</span>&lt;<span class="title">E</span>&gt; </span>&#123;    </span><br><span class="line">    <span class="keyword">private</span> LinkedList&lt;E&gt; linkedList = <span class="keyword">new</span> LinkedList&lt;E&gt;();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">enQueue</span><span class="params">(E e)</span> </span>&#123;        </span><br><span class="line">        linkedList.addLast(e);    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> E <span class="title">deQueue</span><span class="params">()</span> </span>&#123;        </span><br><span class="line">        E e = linkedList.removeFirst();        </span><br><span class="line">        <span class="keyword">return</span> e;    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isNull</span><span class="params">()</span> </span>&#123;        </span><br><span class="line">        <span class="keyword">return</span> linkedList.isEmpty();    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="meta">@Override</span>    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;        </span><br><span class="line">        <span class="keyword">return</span> linkedList.toString();    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -247,6 +263,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -311,18 +338,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/08/17/算法/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/08/17/常用Linux命令/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          (no title)
+          常用Linux命令
         
       </div>
     </a>
   
   
-    <a href="/2019/08/17/常用Linux命令/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"></div>
+    <a href="/2019/08/17/协程/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">协程</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -442,6 +469,26 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java核心技术Ⅰ</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">协程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">线程</a>

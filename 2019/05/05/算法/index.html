@@ -6,15 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019 | XIXIXI</title>
+  <title>算法基础 | XIXIXI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="XIXIXI">
-<meta property="og:url" content="http://yoursite.com/archives/2019/page/2/index.html">
+  <meta name="keywords" content="数据结构与算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法基础">
+<meta property="og:url" content="http://yoursite.com/2019/05/05/算法/index.html">
 <meta property="og:site_name" content="XIXIXI">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-17T03:37:04.768Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="XIXIXI">
+<meta name="twitter:title" content="算法基础">
   
     <link rel="alternative" href="/atom.xml" title="XIXIXI" type="application/atom+xml">
   
@@ -136,36 +138,90 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-算法" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/05/05/算法/" class="archive-article-date">
-  	<time datetime="2019-05-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-05</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/05/算法/">算法基础</a>
+    <h1 class="article-title" itemprop="name">
+      算法基础
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/05/05/算法/" class="archive-article-date">
+  	<time datetime="2019-05-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<a id="more"></a>
+
+<h1 id="算法基础"><a href="#算法基础" class="headerlink" title="算法基础"></a>算法基础</h1><h2 id="1-常用算法"><a href="#1-常用算法" class="headerlink" title="1.常用算法"></a>1.常用算法</h2><h4 id="（1）分治"><a href="#（1）分治" class="headerlink" title="（1）分治"></a>（1）分治</h4><h4 id="（2）动态规划"><a href="#（2）动态规划" class="headerlink" title="（2）动态规划"></a>（2）动态规划</h4><h4 id="（3）贪心"><a href="#（3）贪心" class="headerlink" title="（3）贪心"></a>（3）贪心</h4><h4 id="（4）回溯"><a href="#（4）回溯" class="headerlink" title="（4）回溯"></a>（4）回溯</h4><h4 id="（5）分支界定"><a href="#（5）分支界定" class="headerlink" title="（5）分支界定"></a>（5）分支界定</h4><h2 id="2-复杂度"><a href="#2-复杂度" class="headerlink" title="2.复杂度"></a>2.复杂度</h2><h4 id="（1）时间复杂度"><a href="#（1）时间复杂度" class="headerlink" title="（1）时间复杂度"></a>（1）时间复杂度</h4><h4 id="（2）空间复杂度"><a href="#（2）空间复杂度" class="headerlink" title="（2）空间复杂度"></a>（2）空间复杂度</h4><h2 id="3-字符串匹配"><a href="#3-字符串匹配" class="headerlink" title="3.字符串匹配"></a>3.字符串匹配</h2><h4 id="（1）BF算法"><a href="#（1）BF算法" class="headerlink" title="（1）BF算法"></a>（1）BF算法</h4><p>​    属于暴力破解字符串匹配问题，将所有的情况遍历一遍，时间复杂度比较大。说白了，就是一个个对比然后找出匹配的字符串。时间复杂度是O(m*n)。</p>
+<h4 id="（2）BM算法"><a href="#（2）BM算法" class="headerlink" title="（2）BM算法"></a>（2）BM算法</h4><p>​    全称Boyer-Moore算法，时间复杂度是O(m+n)，而且是可以跳跃着查找，但不适合characterSet太小的情况.</p>
+<p>​    Boyer算法的特点是定义了两个规则，一个是坏字符规则，另外一个是好后缀规则。其中好后缀规则和KMP算法中的后缀定位跳跃的位置相似。</p>
+<p>参考的网址：<a href="https://blog.csdn.net/qzp1991/article/details/42663969" target="_blank" rel="noopener">https://blog.csdn.net/qzp1991/article/details/42663969</a></p>
+<h4 id="（3）Sunday算法"><a href="#（3）Sunday算法" class="headerlink" title="（3）Sunday算法"></a>（3）Sunday算法</h4><p><a href="https://blog.csdn.net/wonder233/article/details/79035403" target="_blank" rel="noopener">https://blog.csdn.net/wonder233/article/details/79035403</a></p>
+<h4 id="（4）KMP算法"><a href="#（4）KMP算法" class="headerlink" title="（4）KMP算法"></a>（4）KMP算法</h4><p>​    KMP算法，是由Knuth，Morris，Pratt共同提出的模式匹配算法，其对于任何模式和目标序列，都可以在线性时间内完成匹配查找，而不会发生退化，是一个非常优秀的模式匹配算法。</p>
+<p>​    KMP算法的核心是算出数组next（用来计算目标字符串[模式串]的最大前缀和最大后缀的长度）。</p>
+<blockquote>
+<p>​    举个例子，主串：<strong>··· a b a a b a ···</strong></p>
+<p>​                    模式串：  <strong>··· a b a a ···</strong></p>
+<p>next数组：</p>
+<table>
+<thead>
+<tr>
+<th align="center">a</th>
+<th align="center">b</th>
+<th align="center">a</th>
+<th align="center">a</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+</tbody></table>
+<p>&lt;1&gt; 第一种子串：模式串中的子字符串长度为1：”a“，所以没有前缀和后缀可言。</p>
+<p>&lt;2&gt;第二种子串：模式串中的子字符串长度为2：”ab“，前缀后缀不相同所以为零；</p>
+<p>&lt;3&gt;第三种子串：模式串中的子字符串长度为3：”aba“，前缀后缀子串最大长度是1，即”a“，所以是1；</p>
+<p>&lt;4&gt;第四个子串：模式串中的子字符串长度为4：”abaa“，前缀后缀子串最大长度是1，即”a“，所以是1；</p>
+</blockquote>
+<h4 id="（5）Tire树"><a href="#（5）Tire树" class="headerlink" title="（5）Tire树"></a>（5）Tire树</h4><h2 id="4-排序"><a href="#4-排序" class="headerlink" title="4.排序"></a>4.排序</h2><h4 id="（1）插入"><a href="#（1）插入" class="headerlink" title="（1）插入"></a>（1）插入</h4><h4 id="（2）交换"><a href="#（2）交换" class="headerlink" title="（2）交换"></a>（2）交换</h4><h4 id="（3）选择"><a href="#（3）选择" class="headerlink" title="（3）选择"></a>（3）选择</h4><h4 id="（4）归并"><a href="#（4）归并" class="headerlink" title="（4）归并"></a>（4）归并</h4><h4 id="（5）基数"><a href="#（5）基数" class="headerlink" title="（5）基数"></a>（5）基数</h4><h2 id="5-查找"><a href="#5-查找" class="headerlink" title="5.查找"></a>5.查找</h2><h4 id="（1）二分查找"><a href="#（1）二分查找" class="headerlink" title="（1）二分查找"></a>（1）二分查找</h4><h4 id="（2）二叉排序树"><a href="#（2）二叉排序树" class="headerlink" title="（2）二叉排序树"></a>（2）二叉排序树</h4><h4 id="（3）B树"><a href="#（3）B树" class="headerlink" title="（3）B树"></a>（3）B树</h4><h4 id="（4）Hash"><a href="#（4）Hash" class="headerlink" title="（4）Hash"></a>（4）Hash</h4><h4 id="（5）BloomFilter"><a href="#（5）BloomFilter" class="headerlink" title="（5）BloomFilter"></a>（5）BloomFilter</h4>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -177,22 +233,109 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/05/05/算法/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2019/06/05/线程切换的步骤/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          线程切换的步骤以及代价
+        
+      </div>
+    </a>
   
   
-    </div></section>
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2019/">&laquo; Prev</a><a class="page-number" href="/archives/2019/">1</a><span class="page-number current">2</span>
-    </nav>
+  
+
+  
+
   
 
 
@@ -216,8 +359,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
