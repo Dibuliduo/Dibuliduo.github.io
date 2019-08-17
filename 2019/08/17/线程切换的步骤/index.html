@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>XIXIXI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="线程切换的步骤以及代价:">
+  <meta name="description" content="线程切换的步骤以及代价:1.线程的上下文切换: CPU保存上一次的任务状态,加载下一个任务这个过程为一次上下文切换; ​    执行的原因:   正常时间片完了之后的正常调度.  执行任务时遇到IO堵塞,挂起当前线程加载下一个线程.  多个任务抢占锁资源,当前任务没有抢到锁资源,被调度器挂起,继续下一个任务.  用户代码挂起当前任务,让出CPU的时间.   2.如何减少上下文的切换  无锁编程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="XIXIXI">
 <meta property="og:url" content="http://yoursite.com/2019/08/17/线程切换的步骤/index.html">
 <meta property="og:site_name" content="XIXIXI">
-<meta property="og:description" content="线程切换的步骤以及代价:">
+<meta property="og:description" content="线程切换的步骤以及代价:1.线程的上下文切换: CPU保存上一次的任务状态,加载下一个任务这个过程为一次上下文切换; ​    执行的原因:   正常时间片完了之后的正常调度.  执行任务时遇到IO堵塞,挂起当前线程加载下一个线程.  多个任务抢占锁资源,当前任务没有抢到锁资源,被调度器挂起,继续下一个任务.  用户代码挂起当前任务,让出CPU的时间.   2.如何减少上下文的切换  无锁编程">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-17T02:26:40.054Z">
+<meta property="og:updated_time" content="2019-08-17T02:29:38.702Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XIXIXI">
-<meta name="twitter:description" content="线程切换的步骤以及代价:">
+<meta name="twitter:description" content="线程切换的步骤以及代价:1.线程的上下文切换: CPU保存上一次的任务状态,加载下一个任务这个过程为一次上下文切换; ​    执行的原因:   正常时间片完了之后的正常调度.  执行任务时遇到IO堵塞,挂起当前线程加载下一个线程.  多个任务抢占锁资源,当前任务没有抢到锁资源,被调度器挂起,继续下一个任务.  用户代码挂起当前任务,让出CPU的时间.   2.如何减少上下文的切换  无锁编程">
   
     <link rel="alternative" href="/atom.xml" title="XIXIXI" type="application/atom+xml">
   
@@ -145,9 +145,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="线程切换的步骤以及代价"><a href="#线程切换的步骤以及代价" class="headerlink" title="线程切换的步骤以及代价:"></a><strong>线程切换的步骤以及代价:</strong></h1><a id="more"></a>
+        <a id="more"></a>
 
-<p><strong>1.线程的上下文切换:</strong></p>
+<h1 id="线程切换的步骤以及代价"><a href="#线程切换的步骤以及代价" class="headerlink" title="线程切换的步骤以及代价:"></a><strong>线程切换的步骤以及代价:</strong></h1><p><strong>1.线程的上下文切换:</strong></p>
 <p>CPU保存上一次的任务状态,加载下一个任务这个过程为一次上下文切换;</p>
 <p>​    <strong>执行的原因:</strong> </p>
 <ul>
