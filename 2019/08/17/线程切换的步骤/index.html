@@ -8,18 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>线程切换的步骤以及代价 | XIXIXI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.线程的上下文切换: CPU保存上一次的任务状态,加载下一个任务这个过程为一次上下文切换;">
-<meta name="keywords" content="线程">
+  <meta name="keywords" content="线程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="线程切换的步骤以及代价">
 <meta property="og:url" content="http://yoursite.com/2019/08/17/线程切换的步骤/index.html">
 <meta property="og:site_name" content="XIXIXI">
-<meta property="og:description" content="1.线程的上下文切换: CPU保存上一次的任务状态,加载下一个任务这个过程为一次上下文切换;">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-17T02:59:54.747Z">
+<meta property="og:updated_time" content="2019-08-17T03:04:05.148Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线程切换的步骤以及代价">
-<meta name="twitter:description" content="1.线程的上下文切换: CPU保存上一次的任务状态,加载下一个任务这个过程为一次上下文切换;">
   
     <link rel="alternative" href="/atom.xml" title="XIXIXI" type="application/atom+xml">
   
@@ -161,10 +158,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>1.线程的上下文切换:</strong></p>
-<p>CPU保存上一次的任务状态,加载下一个任务这个过程为一次上下文切换;</p>
+        <hr>
 <a id="more"></a>
 
+<h3 id="1-线程的上下文切换"><a href="#1-线程的上下文切换" class="headerlink" title="1.线程的上下文切换:"></a><strong>1.线程的上下文切换:</strong></h3><p>CPU保存上一次的任务状态,加载下一个任务这个过程为一次上下文切换;</p>
 <p>​    <strong>执行的原因:</strong> </p>
 <ul>
 <li><p>正常时间片完了之后的正常调度.</p>
@@ -176,14 +173,12 @@
 <li><p>用户代码挂起当前任务,让出CPU的时间.</p>
 </li>
 </ul>
-<p><strong>2.如何减少上下文的切换</strong></p>
-<ul>
+<h3 id="2-如何减少上下文的切换"><a href="#2-如何减少上下文的切换" class="headerlink" title="2.如何减少上下文的切换"></a><strong>2.如何减少上下文的切换</strong></h3><ul>
 <li>无锁编程;</li>
 <li>CAS: 原子类就是啦</li>
 <li>协程: 单线程里面实现调度多任务.</li>
 </ul>
-<p><strong>3.多线程切换的代价:</strong></p>
-<ul>
+<h3 id="3-多线程切换的代价"><a href="#3-多线程切换的代价" class="headerlink" title="3.多线程切换的代价:"></a><strong>3.多线程切换的代价:</strong></h3><ul>
 <li>设计更加复杂.尤其是多线程访问共享数据时,需要特别注意.</li>
 <li>上下文切换的开销.执行起来并不廉价,需要存储当前线程的本地的数据,程序指针等,然后载入另一个线程的本地数据,程序指针等,最后才开始执行.</li>
 <li>增加资源的消耗.除了CPU,还需要一些内存来维持本地的堆栈.</li>
