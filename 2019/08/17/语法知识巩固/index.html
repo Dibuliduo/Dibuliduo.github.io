@@ -13,7 +13,7 @@
 <meta property="og:url" content="http://yoursite.com/2019/08/17/语法知识巩固/index.html">
 <meta property="og:site_name" content="XIXIXI">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-17T03:31:32.320Z">
+<meta property="og:updated_time" content="2019-08-21T18:13:00.401Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线程调度算法">
   
@@ -154,17 +154,55 @@
         <hr>
 <a id="more"></a>
 
-<h1 id="语法知识巩固"><a href="#语法知识巩固" class="headerlink" title="语法知识巩固"></a>语法知识巩固</h1><h2 id="1-数组的定义："><a href="#1-数组的定义：" class="headerlink" title="1.数组的定义："></a>1.数组的定义：</h2><p><strong>（1）int[] a = new int[100];</strong></p>
-<p><strong>（2）a = new int[] {1, 2, 3, 4, 5};</strong></p>
-<p><strong>（3）int[] a = {1, 2, 3, 4, 5};</strong></p>
-<h2 id="2-链表的定义"><a href="#2-链表的定义" class="headerlink" title="2.链表的定义"></a>2.链表的定义</h2><p><strong>（1） LinkedList linkedList = new LinkedList();</strong></p>
-<p><strong>（2）LinkedList(Collection&lt;? extends E&gt; elements)：构造一个链表，将集合中的所有元素添加到这个链表中</strong></p>
-<p><strong>（3）addFirst(E e)：将某个元素添加到列表的头部</strong></p>
+<h1 id="语法知识巩固"><a href="#语法知识巩固" class="headerlink" title="语法知识巩固"></a>语法知识巩固</h1><h2 id="一-数组的定义："><a href="#一-数组的定义：" class="headerlink" title="一    数组的定义："></a>一    数组的定义：</h2><p><strong>1.int[] a = new int[100];</strong></p>
+<p><strong>2.a = new int[] {1, 2, 3, 4, 5};</strong></p>
+<p><strong>3.int[] a = {1, 2, 3, 4, 5};</strong></p>
+<h2 id="二-链表的定义"><a href="#二-链表的定义" class="headerlink" title="二    链表的定义"></a>二    链表的定义</h2><p><strong>1. LinkedList linkedList = new LinkedList();</strong></p>
+<p><strong>2.LinkedList(Collection&lt;? extends E&gt; elements)：构造一个链表，将集合中的所有元素添加到这个链表中</strong></p>
+<p><strong>3.addFirst(E e)：将某个元素添加到列表的头部</strong></p>
 <p>​          <strong>addLast(E e)：将某个元素添加到列表的尾部</strong></p>
 <p>​           <strong>E getFirst(E e)：返回头部元素</strong></p>
 <p>​           <strong>E getLast(E e)：返回尾部元素</strong></p>
 <p>​           <strong>E removeFirst()：删除头部元素并返回</strong></p>
 <p>​           <strong>E removeLast()：删除尾部元素并返回</strong></p>
+<h2 id="三-抽象类和接口的含义和区别"><a href="#三-抽象类和接口的含义和区别" class="headerlink" title="三    抽象类和接口的含义和区别:"></a>三    抽象类和接口的含义和区别:</h2><p><strong>1.抽象类：</strong></p>
+<p><strong>（1）抽象类的定义：</strong></p>
+<ul>
+<li>不能创建实例，它只能作为父类被继承。</li>
+<li>抽象类是从多个具体类抽象出来的父类，它具有更高层次的抽象。</li>
+<li>从多个具有相同特征的具体类抽象出一个抽象类，并作为其模板，避免了子类的随意性。</li>
+</ul>
+<p><strong>（2）抽象类和抽象方法的关系：</strong></p>
+<ul>
+<li>抽象方法只做说明，而不包含实现，可以看成是没有实现体的虚方法。（抽象方法作为多个具体类的共同特征）</li>
+<li>抽象类不能被实例化。</li>
+<li>抽象类可以但不是必须又抽象属性和抽象方法，但是一旦有了抽象方法必须将类声明为抽象类。</li>
+<li>具体派生类必须重写基类的抽象方法。</li>
+<li>抽象派生类可以覆盖基类的抽象方法，也可以不覆盖。如果不覆盖，派生具体类必须覆盖它们。</li>
+</ul>
+<p><strong>2.接口：</strong></p>
+<p><strong>（1）接口的定义：</strong></p>
+<ul>
+<li>接口不能被实例化。</li>
+<li>接口只能包含方法声明。</li>
+<li>接口的成员包括方法、属性、索引器、事件。</li>
+<li>接口中不能包含常量，字段（域），构造函数，析构函数，静态成员</li>
+</ul>
+<p><strong>3.抽象类和接口的区别：</strong></p>
+<ul>
+<li>抽象类可以有构造方法，接口中不能有构造放；</li>
+<li>抽象类中可以有普通成员变量，接口中没有普通成员变量；</li>
+<li>抽象类中可以包含静态方法，接口中不能包含静态方法；</li>
+<li>一个类可以实现多个接口，但是只能继承一个抽象类；</li>
+<li>接口可以被多重实现，抽象类只能被单一继承；</li>
+</ul>
+<p><strong>4.抽象类和接口的相同点：</strong></p>
+<ul>
+<li>都可以被继承；</li>
+<li>都不能被实例化；</li>
+<li>都可以包含方法声明；</li>
+<li>派生类必须实现未实现方法；</li>
+</ul>
 
       
 
@@ -268,8 +306,8 @@
     </a>
   
   
-    <a href="/2019/08/17/协程/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">协程</div>
+    <a href="/2019/08/17/常用Linux命令/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">常用Linux命令</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -395,6 +433,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">协程</a>
               </li>
              
@@ -403,15 +445,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">线程</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
             
             <div class="clearfix"></div>
